@@ -1,28 +1,34 @@
-CREATE DATABASE kJourneyDB;
+DROP SCHEMA IF EXISTS kJourneyDB;
+CREATE SCHEMA kJourneyDB;
 USE kJourneyDB;
 
+DROP TABLE IF EXISTS training;
 CREATE TABLE training (
     ID int PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     description VARCHAR(200) NOT NULL
 );
 
+DROP TABLE IF EXISTS competency;
 CREATE TABLE competency (
     ID int PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(50) NOT NULL
 );
 
+DROP TABLE IF EXISTS band;
 CREATE TABLE band (
     ID int PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     level int NOT NULL
 );
 
+DROP TABLE IF EXISTS responsibilities;
 CREATE TABLE responsibilities (
     ID int PRIMARY KEY AUTO_INCREMENT,
     respDesc VARCHAR(50) NOT NULL
 );
 
+DROP TABLE IF EXISTS capLead;
 CREATE TABLE capLead (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
@@ -30,6 +36,7 @@ CREATE TABLE capLead (
     message VARCHAR(100) NOT NULL
 ); 
 
+DROP TABLE IF EXISTS authData;
 CREATE TABLE authData (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL,
@@ -43,6 +50,7 @@ CREATE TABLE authData (
     isAdmin BOOLEAN NOT NULL
 );
 
+DROP TABLE IF EXISTS capability;
 CREATE TABLE capability (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
@@ -50,6 +58,7 @@ CREATE TABLE capability (
     FOREIGN KEY (leadID) REFERENCES capLead(ID)
 );
 
+DROP TABLE IF EXISTS jobFam;
 CREATE TABLE jobFam (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
@@ -57,6 +66,7 @@ CREATE TABLE jobFam (
     FOREIGN KEY (capID) REFERENCES capability(ID)
 );
 
+DROP TABLE IF EXISTS jobRole;
 CREATE TABLE jobRole (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
@@ -68,6 +78,7 @@ CREATE TABLE jobRole (
     FOREIGN KEY (bandID) REFERENCES band(ID)
 );
 
+DROP TABLE IF EXISTS comp_Band;
 CREATE TABLE comp_Band (
     compID int NOT NULL,
     bandID int NOT NULL,
@@ -78,6 +89,7 @@ CREATE TABLE comp_Band (
     FOREIGN KEY (bandID) REFERENCES band(ID)
 );
 
+DROP TABLE IF EXISTS band_Training;
 CREATE TABLE band_Training (
     bandID int NOT NULL,
     trainingID int NOT NULL,
@@ -87,6 +99,7 @@ CREATE TABLE band_Training (
     FOREIGN KEY (trainingID) REFERENCES training(ID)
 );
 
+DROP TABLE IF EXISTS userData;
 CREATE TABLE userData (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
@@ -94,6 +107,7 @@ CREATE TABLE userData (
     FOREIGN KEY (roleID) REFERENCES jobRole(ID)
 );
 
+DROP TABLE IF EXISTS resp_Band;
 CREATE TABLE resp_Band (
     respID int NOT NULL,
     bandID int NOT NULL,
@@ -103,7 +117,7 @@ CREATE TABLE resp_Band (
     FOREIGN KEY (bandID) REFERENCES band(ID)
 );
 
-
+DROP TABLE IF EXISTS resp_Role;
 CREATE TABLE resp_Role (
     respID int NOT NULL,
     roleID int NOT NULL,
