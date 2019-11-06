@@ -6,9 +6,6 @@ import { Role } from '../models/role';
   providedIn: 'root'
 })
 export class DataService {
-
-  roles = this.http.get<Role[]>('/api/roles')
-
   constructor(private http: HttpClient) {
   }
 
