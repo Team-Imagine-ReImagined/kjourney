@@ -2,6 +2,13 @@ require("dotenv").config();
 
 const express = require('express')
 const app = express()
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const secretKey = process.env.JWT_Secret
+var options = { cookies: true }
+var jwt = require('jsonwebtoken', options);
+
+
 app.use(express.json())
 
 const db = require('./db.js')
@@ -21,3 +28,168 @@ app.get('/getTrainingDetails', function(req, res) {
         res.send(rows);
     })
 })
+
+app.post('/login', function (req,res) {
+    genericError = "Invalid username or password";
+    lockedOutError = "Your account is locked out for ";
+    lockOutDurationSeconds = 1800;
+    tokenValidDurationSeconds = 1800;
+    lockOutAttempts = 5;
+
+    data = req.body;
+
+    if(data.username && data.password){
+        //attempt to fetch user from db
+        db.getUser(data.username, function(retRowsList){
+        if(retRowsList.length){
+            retRows = retRowsList[0];
+            lockedOut = retRows.lockedOut;
+            if(lockedOut === 1){
+                //if User is locked out
+                //compare current time to lockedoutdate
+                //if passed, set lockedOut to false, do db jobs
+                //if failed, returned locked out error message
+
+                currentDate = Date.now();
+                if(retRows.lockoutDate <= Date.now()){
+                    //user's locked out duration has expired
+                    lockedOut = false
+                    db.resetLockout(retRows.id);
+                } else{
+                    
+                    //user's lockout duration has not expired
+                    lockoutFormat = Math.round(((retRows.lockoutDate - Date.now()) /60000));
+                    res.send({Status: 401, Message: lockedOutError + lockoutFormat + ' minutes'})
+                }
+            }
+            
+            if(!lockedOut){
+                //either user was not locked out, or is no longer locked out
+                //hash supply password & compare
+                //if match, generate JWT and log user in
+                //if fail, incriment failCount and eval lockout condition
+
+                bcrypt.compare(data.password, retRows.passwordHash, function(err, result) {
+
+                const passwordMatch =  result;
+                if(passwordMatch){
+                    //User is not locked out and has supplied correct password, log them in
+                    //JWT = generateJWT(retRows.ID, tokenValidDurationMinutes);
+                    //db.StoreUserJWT(JWT, addMinutes(getCurrentDate(), tokenValidDurationMinutes));
+                    var  accessToken  =  jwt.sign({ id:  retRows.id, isAdmin: retRows.isAdmin, date : Date.now() }, secretKey, {
+                        expiresIn:  tokenValidDurationSeconds});
+
+                    db.storeUserToken(retRows.id, accessToken, (Date.now() + (tokenValidDurationSeconds * 1000)));
+
+
+                    res.send({Status:200, User:{
+                        "username": retRows.username,
+                        "id": retRows.id}, Auth: accessToken})
+
+                    //clear failed attempts as user has successfully logged in
+                    if(retRows.failedAttempts != 0){
+                        db.setUserLockoutCount(retRows.id, 0);
+                    }
+                    //return User;
+
+                } else{
+                    //Password did not match, evaluate lockout condition
+                    if(retRows.failedAttempts === null || retRows.failedAttempts === undefined){
+                        //if somehow null, set to 0 to avoid app crash
+                        retRows.failedAttempts = 0;
+                    }
+                    
+                    db.setUserLockoutCount(retRows.id, (retRows.failedAttempts + 1) );
+                    if(retRows.failedAttempts >= lockOutAttempts - 1){
+                        //user has failed login too many times
+                        newLockedOutDate = Date.now() + (lockOutDurationSeconds * 1000); //1800 seconds - 30 minutes
+
+                        db.setUserLockedout(retRows.id, newLockedOutDate);
+
+                        
+                        res.send({Status: 401, Message: lockedOutError + (Math.round(lockOutDurationSeconds/60)) + ' minutes'});
+                    } else{
+                        res.send({Status: 401, Message: genericError});
+                    }
+                }
+
+                });
+            }
+        } else{
+            //user doesn't exist
+            res.send({Status: 401, Message: genericError});
+        }
+
+    });
+    } else{
+        //username and/or password not supplied
+        res.send({Status: 401, Message: genericError});
+    }
+});
+
+app.post('/SecureGenerateUser', function(req,res){
+    data = req.body;
+
+    db.getUser(data.username, function(retRows){
+
+        if(retRows.length){
+            retRow = retRows[0];
+            res.send({ErrorMessage: "User "+data.username+" already exists"})
+
+        } else{
+
+
+            
+    bcrypt.genSalt(saltRounds, function(err, salt) {
+        bcrypt.hash(data.password, salt, function(err, hash) {
+            // Store hash in your password DB.
+
+            db.secureGenerateUser({"username":data.username, "passwordHash":hash, "lockedOut":false});
+        });
+        if(err){
+            res.send({ErrorMessage: err})
+        } else{
+            res.send({SuccessMessage: "Worked for user "+data.username})
+        }
+    });
+
+        
+
+}
+    
+})
+});
+
+
+app.post('/InvalidateUserToken', function(req, res){
+
+
+    if(req.headers.authorization){
+        header = req.headers.authorization.split(" ")[1]
+
+        db.clearUserToken(header);
+    }
+})
+
+function checkToken(tokenIn, UserID){
+    returnedToken = db.getUserToken(UserID);
+    //if a token is returned
+    if(returnedToken.length){
+        rToken = returnedToken[0];
+        if(Date.now() > rToken.jwtDate){
+            //token expried, return false;
+            return false;
+        } else{
+            if(rToken.jwt === tokenIn){
+                //token matches user token
+                return true;
+            } else{
+                return false;
+                //token doen't match user token
+            }
+        }
+    } else{
+        return false;
+    }
+}
+
