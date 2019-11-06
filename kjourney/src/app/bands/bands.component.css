@@ -23,14 +23,7 @@
 	color: black;
   }
 
-  .search-bar input{
-  height: 75px;
-  width: 900px;
-  padding: 24px;
-  font-size: 24pt;
-  border-radius: 37.5px;
-  border-color: black;
-  }
+ 
 
   ::placeholder{
 	color: lightgray;
@@ -59,8 +52,20 @@
 	padding: 25px;
 	width: 100%;
 	background-color: white;
-	border-radius: 15px;
+    border-radius: 15px;
+    font-size: 15pt;
+    font-weight: 300;
+    color:#41679f;
+    
+
   }
+
+  th {
+    color: #41679f;
+      font-weight: 700;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
 
   footer {
 	position: fixed;

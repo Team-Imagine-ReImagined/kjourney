@@ -1,0 +1,28 @@
+<router-outlet></router-outlet>
+<header>
+  <table style="width: 100%;">
+    <tr>
+      <th>
+</th>
+
+<section>
+        <article>
+          <table id="band" style="width:100%">
+              <thead>
+                  <tr>
+                      <th>Band Name</th>
+                      <th>Role</th>
+                      <th>Band Level</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr class="Name" id="pop-over" *ngFor="let band of bands">
+                      <td>{{ band.name }}</td>
+                      <td>{{ band.role }}</td>
+                      <td>{{ band.level }}</td>
+                  </tr>
+              </tbody>
+          </table>
+        </article>
+      </section>
+      
