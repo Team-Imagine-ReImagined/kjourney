@@ -1,10 +1,10 @@
---Lead;
+
 insert into capLead (name, photo, message)
 values ('Bane Bafferty', 'image link', 'I have no idea what im doing please send help');
 insert into capLead (name, photo, message)
 values ('Conor McCormick', 'image link', 'Im in charge of AI and Josh');
 
---Capabilities - need lead ids;
+
 insert into capability (name, leadID)
 values ('Sales & Marketing', 1);
 insert into capability (name, leadID)
@@ -18,7 +18,7 @@ values ('Management', 1);
 insert into capability (name, leadID)
 values ('Central Services Teams', 1);
 
---Bands - need level numbers;
+
 insert into band (name, level)
 values ('Executive', 1);
 insert into band (name, level)
@@ -38,7 +38,7 @@ values ('Trainee', 1);
 insert into band (name, level)
 values ('Apprentice', 1);
 
---JobFam;
+
 insert into jobFam (name, capID)
 values ('Business Development', 1);
 insert into jobFam (name, capID)
@@ -110,8 +110,6 @@ values ('Strategy', 6);
 insert into jobFam (name, capID)
 values ('Systems', 6);
 
---Roles;
---S&M;
 insert into jobRole (name, summary, link, jobFamID, bandID)
 values ('Head of Business Unit', "Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.",
 'www.google.com', 1, 1);
@@ -133,7 +131,8 @@ values ('Account Director', "Recognised leader and developer of Kainos talent, c
 insert into jobRole (name, summary, link, jobFamID, bandID)
 values ('Business Development Manager', "Serves the company's commercial and delivery interests, owns single initiatives or projects, advocates effective coaching and ensures that it happens.",
 'www.google.com', 1, 4);
---Technical;
+
+
 insert into jobRole (name, summary, link, jobFamID, bandID)
 values ('Lead Software Engineer', "Expert in their field, is consulted by others, supervises others, works well even if under pressure, effectively coaches people.",
 'www.google.com', 7, 5);
@@ -147,13 +146,12 @@ insert into jobRole (name, summary, link, jobFamID, bandID)
 values ('Data Engineer', "Delivers with limited supervision, trusted to make tactical decisions.",
 'www.google.com', 8, 6);
 
---training;
+
 insert into training(name, description)
 values ('Management Course', 'Learn how to manage little baby developers');
 insert into training(name, description)
 values ('SA Development', 'Learn the new responsibilities required in your new role');
 
---competency;
 insert into competency(title)
 values ('Commercial Awareness');
 insert into competency(title)
@@ -169,7 +167,7 @@ values ('Planning & Organising');
 insert into competency(title)
 values ('Job Specific Knowledge');
 
---responsibilities;
+
 insert into responsibilities (respDesc)
 values ('Develop talent within your team, ensuring SMARTER stretch and project goals are clearly defined');
 insert into responsibilities (respDesc)
@@ -179,7 +177,7 @@ values ('Identify training needs for team members and report to the BU talent ma
 insert into responsibilities (respDesc)
 values ('Participate, and encourage your people to participate, in recruitment activities');
 
---Comp-Band;
+
 insert into comp_Band(compID, bandID, compDesc)
 values (1, 2, 'You take a balanced view of wider impact on the organisation when making significant changes' );
 insert into comp_Band(compID, bandID, compDesc)

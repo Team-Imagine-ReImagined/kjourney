@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+const db = require('./db.js')
 const express = require('express')
 const app = express()
 app.use(express.json())
@@ -20,3 +21,9 @@ app.get('/roles', function(req, res) {
 app.listen(8002, function () {
     console.log('Express started on port 8002')
 });
+
+app.get('/getTrainingDetails', function(req, res) {
+    db.getTrainingDetails(req.query.id, function(rows) {
+        res.send(rows);
+    })
+})

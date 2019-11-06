@@ -40,7 +40,7 @@ DROP TABLE IF EXISTS authData;
 CREATE TABLE authData (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL,
-    passwordHash VARCHAR(50) NOT NULL,
+    passwordHash VARCHAR(60) NOT NULL,
     salt VARCHAR(50) NOT NULL,
     failedAttempts INT NOT NULL,
     lockedOut BOOL NOT NULL,

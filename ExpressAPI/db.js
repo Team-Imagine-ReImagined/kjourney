@@ -19,6 +19,19 @@ exports.getRoles = function(callback) {
             if (err) {
                 throw err;
             }
+            callback(rows)
+        }
+    )
+}
+
+exports.getTrainingDetails = function(ID, callback) {
+    db.query(
+        "SELECT * FROM training",
+        [ID],
+        function (err, rows) {
+            if (err) {
+                throw err;
+            }
             callback(rows);
         }
     )
