@@ -23,6 +23,18 @@ app.get('/roles', function (req, res) {
     })
 });
 
+app.get('/capabilities', function(req, res) {
+    db.getCapabilities(function(rows) {
+        res.send(rows)
+    })
+})
+
+app.get('/jobFamilies', function(req, res) {
+    db.getJobFamilies(function(rows) {
+        res.send(rows)
+    })
+})
+
 app.listen(8002, function () {
     console.log('Express started on port 8002')
 });

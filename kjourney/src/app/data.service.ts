@@ -5,6 +5,8 @@ import { Competency } from '../models/competency';
 import { Responsibility } from '../models/responsibility';
 import { TrainingPerBand } from '../models/trainingPerBand';
 import { Observable } from 'rxjs';
+import { Capability } from '../models/capability';
+import { JobFamily } from '../models/jobFamily';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +29,12 @@ export class DataService {
 
   public getResponsibilities(bandID): Observable<Responsibility[]> {
     return this.http.get<Responsibility[]>('api/responsibilities/' + bandID);
+  }
+  public getCapabilities(): Observable<Capability[]> {
+    return this.http.get<Capability[]>('api/capabilities');
+  }
+
+  public getJobFamilies(): Observable<JobFamily[]> {
+    return this.http.get<JobFamily[]>('api/jobFamilies');
   }
 }
