@@ -1,15 +1,194 @@
 insert into capLead (name, photo, message)
-values ('Shane Rafferty', 'image link', 'Leader of Technical Capability.');
+values ('Shane Rafferty', '../../assets/leadPhotos/shane.jpg', 'Leader of Technical Capability.');
 insert into capLead (name, photo, message)
-values ('Conor McCormick', 'image link', 'Leader of AI Capability.');
+values ('Conor McCormick', '../../assets/leadPhotos/conor.png', 'Leader of AI Capability');
 insert into capLead (name, photo, message)
-values ('Roisin Goodman', 'image link', 'Leader of Sales & Marketing Capability.');
+values ('Roisin Goodman', '../../assets/leadPhotos/roisin.jpeg', 'Leader of Sales & Marketing Capability');
 insert into capLead (name, photo, message)
-values ('Chris Thompson', 'image link', 'Leader of Experience Design Capability.');
+values ('Jessica McMillen', '../../assets/leadPhotos/jessica.png', 'Leader of Experience Design Capability.');
 insert into capLead (name, photo, message)
-values ('Thomas Boyle', 'image link', 'Leader of Consulting Capability.');
+values ('Thomas Boyle', '../../assets/leadPhotos/thomas.jpeg', 'Leader of Consulting Capability.');
 insert into capLead (name, photo, message)
-values ('Eoin McCoy', 'image link', 'Leader of Central Services Teams.');
+values ('Eoin McCoy', '../../assets/leadPhotos/eoin.jpg', 'Leader of Central Services Teams');
+
+
+insert into capability (name, leadID, description)
+values ('Sales & Marketing', 1, 'Sales and Marketing');
+insert into capability (name, leadID, description)
+values ('Technical', 2, 'Technical');
+insert into capability (name, leadID, description)
+values ('Consulting', 3, 'Consulting');
+insert into capability (name, leadID, description)
+values ('Experience Design', 4, 'User experience design');
+insert into capability (name, leadID, description)
+values ('Management', 5, 'Managing in Kainos');
+insert into capability (name, leadID, description)
+values ('Central Services Teams', 6, 'Central Kainos services');
+
+
+insert into band (name, level)
+values ('Executive', 0);
+insert into band (name, level)
+values ('Leadership Community', 1);
+insert into band (name, level)
+values ('Principal', 2);
+insert into band (name, level)
+values ('Manager', 3);
+insert into band (name, level)
+values ('Consultant', 4);
+insert into band (name, level)
+values ('Senior Associate', 5);
+insert into band (name, level)
+values ('Associate', 6);
+insert into band (name, level)
+values ('Trainee', 7);
+insert into band (name, level)
+values ('Apprentice', 7);
+
+
+insert into jobFam (name, capID)
+values ('Business Development', 1);
+insert into jobFam (name, capID)
+values ('Account Management', 1);
+insert into jobFam (name, capID)
+values ('Sales', 1);
+insert into jobFam (name, capID)
+values ('Software Engineering', 2);
+insert into jobFam (name, capID)
+values ('Data Engineering', 2);
+insert into jobFam (name, capID)
+values ('Cyber Security', 2);
+insert into jobFam (name, capID)
+values ('Product', 3);
+insert into jobFam (name, capID)
+values ('Agile', 3);
+insert into jobFam (name, capID)
+values ('HCM', 3);
+insert into jobFam (name, capID)
+values ('Research', 4);
+insert into jobFam (name, capID)
+values ('UX Design', 4);
+insert into jobFam (name, capID)
+values ('Creative Design', 4);
+insert into jobFam (name, capID)
+values ('Project Management', 5);
+insert into jobFam (name, capID)
+values ('Support Management', 5);
+insert into jobFam (name, capID)
+values ('Finance & PMO', 6);
+insert into jobFam (name, capID)
+values ('Commercial', 6);
+insert into jobFam (name, capID)
+values ('People', 6);
+
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Head of Business Unit', "Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.",
+        'www.google.com', 1, 1);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Head of Business Unit', "Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.",
+        'www.google.com', 2, 1);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Sales Director', "Owns and leads sales",
+        'www.google.com', 1, 2);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Sales Director', "Owns and leads sales",
+        'www.google.com', 2, 2);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Business Development Director', "Recognised leader and developer of Kainos talent, continuously improves Kainos, comfortable in novel situations, owns multiple initiatives, delivery at Programme level.",
+        'www.google.com', 1, 3);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Account Director', "Recognised leader and developer of Kainos talent, continuously improves Kainos, comfortable in novel situations, owns multiple initiatives, accountable for delivery at Programme level.",
+        'www.google.com', 2, 3);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Business Development Manager', "Serves the company's commercial and delivery interests, owns single initiatives or projects, advocates effective coaching and ensures that it happens.",
+        'www.google.com', 1, 4);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Business Development Manager', "Serves the company's commercial and delivery interests, owns single initiatives or projects, advocates effective coaching and ensures that it happens.",
+        'www.google.com', 1, 4);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Account Manager', "Serves the company's commercial and delivery interests, owns single initiatives or projects, advocates effective coaching and ensures that it happens.",
+        'www.google.com', 2, 4);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Junior Business Development Manager', "Expert in their field, is consulted by others, supervises others, works well even if under pressure, effectively coaches people.",
+        'www.google.com', 1, 5);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Junior Account Manager', "Expert in their field, is consulted by others, supervises others, works well even if under pressure, effectively coaches people.",
+        'www.google.com', 2, 5);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Head of Business Unit', "Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.",
+        'www.google.com', 3, 1);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Sales Director', "Owns and leads sales",
+        'www.google.com', 3, 2);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Senior Sales Executive', "Recognised leader and developer of Kainos talent, continuously improves Kainos, comfortable in novel situations, owns multiple initiatives, accountable for delivery at Programme level.",
+        'www.google.com', 3, 3);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Sales Executive', "Serves the company's commercial and delivery interests, owns single initiatives or projects, advocates effective coaching and ensures that it happens.",
+        'www.google.com', 3, 4);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Sales Executive', "Expert in their field, is consulted by others, supervises others, works well even if under pressure, effectively coaches people.",
+        'www.google.com', 3, 5);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Sales Associate', "Delivers with limited supervision, trusted to make tactical decisions.",
+        'www.google.com', 3, 6);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Sales Associate', "Established deliverer, works well in a team.",
+        'www.google.com', 3, 7);
+
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Lead Software Engineer', "Expert in their field, is consulted by others, supervises others, works well even if under pressure, effectively coaches people.",
+        'www.google.com', 4, 5);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Lead Data Engineer', "Expert in their field, is consulted by others, supervises others, works well even if under pressure, effectively coaches people.",
+        'www.google.com', 5, 5);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Software Engineer', "Delivers with limited supervision, trusted to make tactical decisions.",
+        'www.google.com', 4, 6);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Data Engineer', "Delivers with limited supervision, trusted to make tactical decisions.",
+        'www.google.com', 5, 6);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Software Engineer', "Established deliverer, works well in a team.",
+        'www.google.com', 4, 7);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Data Engineer', "Established deliverer, works well in a team.",
+        'www.google.com', 5, 7);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Software Engineer', "Graduate entry level, here to learn, but primarily to contribute to projects.",
+        'www.google.com', 4, 8);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Trainee Data Engineer', "Graduate entry level, here to learn, but primarily to contribute to projects.",
+        'www.google.com', 5, 8);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Software Engineer', "Here primarily to learn; contributes to projects.",
+        'www.google.com', 4, 9);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Senior Security Architect', "Serves the company's commercial and delivery interests, owns single initiatives or projects, advocates effective coaching and ensures that it happens.",
+        'www.google.com', 6, 3);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Security Architect', "Expert in their field, is consulted by others, supervises others, works well even if under pressure, effectively coaches people.",
+        'www.google.com', 6, 4);
+insert into jobRole (name, summary, link, jobFamID, bandID)
+values ('Security Engineer', "Works within teams to establish good security practices, supporting the design, development and testing of the service being delivered for both application and infrastructure. Is viewed as an authority figure for cyber security and will bring strong technical leadership including mentoring and coaching Kainos people, to strengthen our security capability across the organisation.",
+        'www.google.com', 6, 5);
+
+
+insert into training(name, description, trainingType)
+values ('People Manager Toolkit', 'Learn how to manage teams in Kainos', 'Professional skills');
+insert into training(name, description, trainingType)
+    values ('SA Development', 'Learn the responsibilities required in your new role', 'Technical skills');
+insert into training(name, description, trainingType)
+values ('Kainos as a Business', 'Learn how Kainos business processes operate', 'Development programmes');
+insert into training(name, description, trainingType)
+values ('Influencing Others', 'Learn how to work with a team and positively influence your colleagues', 'Professional skills');
+insert into training(name, description, trainingType)
+values ('Coaching - Foundation', 'Learn the basics of mentoring and teaching colleagues', 'Technical skills');
+insert into training(name, description, trainingType)
+values ('Consultant Development', 'Learn the responsibilities required in your new role', 'Professional skills');
+insert into training(name, description, trainingType)
+values ('Certified Scrum Master', 'Learn how to lead an agile team', 'Development programmes');
+
 
 insert into competency(title)
 values ('Commercial Awareness');

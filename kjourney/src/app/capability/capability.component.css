@@ -1,0 +1,143 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-image: linear-gradient(to bottom right, #61ab3f, white);
+  background-attachment: fixed;
+  font-family: sans-serif;
+}
+
+/* Style the header */
+.header {
+  background-color: #f1f1f1;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #283683;
+  border: 2px solid black;
+  border-radius: 15px;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  color:#009fe3;
+  text-decoration: underline;
+}
+
+header {
+  background-color:transparent;
+  padding: 30px;
+  text-align: left;
+  font-size: 15px;
+  color: black;
+}
+
+.search-bar input{
+  height: 75px;
+  width: 900px;
+  padding: 24px;
+  font-size: 24pt;
+  border-radius: 37.5px;
+  border-color: black;
+}
+
+::placeholder{
+  color: lightgray;
+}
+
+nav {
+  border-radius: 15px;
+  float: left;
+  width: 10%;
+  background: #283683;
+  padding: 20px;
+  border: 2px solid black;
+  color: white;
+}
+
+nav ul {
+  overflow: scroll;
+  list-style-type: none;
+  padding: 0;
+}
+
+article {
+  border: 2px solid #283583;
+  float: right;
+  padding: 25px;
+  width: 100%;
+  background-color: white;
+  border-radius: 15px;
+}
+
+th {
+  text-align: center;
+  color: #61a83f;
+}
+
+td {
+  color: #283583;
+}
+
+h1 {
+  color: #61a83f;
+  text-align: center;
+}
+
+.search-bar input{
+  height: 10%;
+  width: 50%;
+  font-size: 100%;
+  padding: 1%;
+  border-radius: 37.5px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: #283583;
+  }
+
+  h2 {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  #capSection
+  {
+    width: 100%;
+  }
+
+  table
+  {
+    width: 100%;
+  }
+
+  #capLeadSection{
+    float: right; 
+    width: 48%;
+  }
+
+  #tableCenter{
+    text-align: center;
+  }
+
+  #articleSpacing{
+    margin-top: 2%;
+  }
+
+  #roleSectionWidth{
+    width: 95%;
+  }

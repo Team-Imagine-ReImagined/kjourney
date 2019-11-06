@@ -93,16 +93,18 @@ exports.getResponsibilities = function(bandID, callback) {
     )
 };
 
+
+
 exports.getUser = function(Username, callback){
     db.query(
         `SELECT IDFromUserDataTable AS id, username, passwordHash, failedAttempts, lockedOut, lockoutDate, jwt, jwtDate, isAdmin 
          FROM authData WHERE username = '${Username}' LIMIT 1;`,
         function (err, rows) {
             if (err) {
-                logger.error("getUser failed with error: " + err)
+                logger.error("getUser failed with error: " + err);
                 throw err;
             }
-            logger.debug("getUser for "+Username)
+            logger.debug("getUser for "+Username);
             callback(rows);
     })
 };
@@ -265,6 +267,21 @@ exports.GetJobRolesPerJobFamRegisterUser = function(jobFamID, callback){
         })
 }
 
+exports.getBandRoles = function(bandID, callback) {
+    db.query(
+        "SELECT jobRole.bandID, jobRole.ID as roleID, jobRole.name as roleName, jobFam.name as jobFamilyName " +
+        "FROM jobRole JOIN jobFam ON jobRole.jobFamID = jobFam.ID " +
+        "WHERE bandID = " + bandID,
+        function (err, rows) {
+            if (err) {
+                logger.error("getBandRoles failed with error: " + err);
+                throw err;
+            }
+            logger.debug("getBandRoles succeeded.");
+            callback(rows);
+        }
+    )
+};
 
 exports.GetRoleByRoleID = function(jobRoleID, callback){
     db.query(
@@ -293,6 +310,36 @@ exports.getBandName = function(bandID, callback) {
             callback(rows);
         }
     )
+};
+
+exports.getCapabilities = function(ID, callback) {
+    db.query(
+        "SELECT capability.ID AS ID, capability.name AS name, capability.description AS capDescription, capLead.name AS leadName, capLead.photo AS photo, capLead.message AS message FROM capability INNER JOIN capLead ON capability.leadID=capLead.ID WHERE capability.ID=?", [ID],
+        function(err, rows) {
+            if (err) {
+                logger.error("getCapabilities failed with error: " + err);
+                throw err;
+            }
+            logger.debug("getCapabilities succeeded.");
+            callback(rows);
+        }
+    )
+};
+
+exports.getJobFamilies = function(callback) {
+    db.query(
+        "SELECT jobFam.ID AS famID, jobFam.name AS famName, capability.name as capName, capability.ID AS capID FROM jobFam INNER JOIN capability ON jobFam.capID=capability.ID;",
+        function(err, rows) {
+            if (err) {
+                logger.error("getJobFamilies failed with error: " + err);
+                throw err;
+            }
+            logger.debug("getJobFamilies succeeded.");
+            callback(rows);
+        }
+    )
+}
+
 }
 exports.getUserInfo = function(userID, callback) {
     db.query(
