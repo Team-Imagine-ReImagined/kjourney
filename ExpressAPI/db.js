@@ -11,3 +11,16 @@ db.connect(function(err){
     if (err) throw err;
     console.log("Connected to mySQL")
 })
+
+exports.getTrainingDetails = function(ID, callback) {
+    db.query(
+        "SELECT * FROM training",
+        [ID],
+        function (err, rows) {
+            if (err) {
+                throw err;
+            }
+            callback(rows);
+        }
+    )
+}
