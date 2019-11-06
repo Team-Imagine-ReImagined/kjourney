@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import * as Treeviz from 'treeviz'
 import { DataService } from '../data.service'
+import { Role } from '../../models/role'
 
 @Component({
   selector: 'app-main',
@@ -8,13 +9,15 @@ import { DataService } from '../data.service'
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  public data: DataService
+  private data: DataService
+  public roles: Role[]
 
   constructor(data: DataService) {
     this.data = data
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.roles = await this.data.getRoles()
   }
 
 }
