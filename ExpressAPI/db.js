@@ -46,3 +46,10 @@ exports.getTrainingDetails = function(ID, callback) {
         }
     )
 }
+
+exports.getRoleDetails = function(jobFamID, bandID, callback) {
+    db.query(
+        "SELECT id, name, summary, link, jobFamID, bandID" +
+        "FROM jobRoles WHERE jobFamID = " + jobFamID + " AND bandID = " + bandID + ";", )
+    )
+}
