@@ -11,3 +11,15 @@ db.connect(function(err){
     if (err) throw err;
     console.log("Connected to mySQL")
 })
+
+exports.getRoles = function(callback) {
+    db.query(
+        "SELECT name, summary FROM jobRole",
+        function(err, rows) {
+            if (err) {
+                throw err;
+            }
+            callback(rows);
+        }
+    )
+}
