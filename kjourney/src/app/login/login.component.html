@@ -1,16 +1,35 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
 
-<article>
-	<form action="POST">
-		<h1>Please enter your login details:</h1>
-		<h2>E-Mail:</h2>
-		<p><textarea cols="71" rows="1"></textarea></p>
-		<h2>Password:</h2>
-		<p><textarea cols="71" rows="1"></textarea></p>
-		<p></p>
-		<input type="submit" value="Log-In">
+
+<div class="container">
+		<div class="card">
+        <b><h2 class="card-header">kJourney Login</h2></b>
+		<div class="card-body"> 
+	<form (ngSubmit)="loginUser(addForm)" #addForm="ngForm"> 
+			<fieldset>
+					<div class = "form-group">
+							<label for="Username">Username</label>
+					<div><input type="text" [(ngModel)]="newUser.username" class="form-control" name="Username" required> </div>
+					</div>
+					<div class = "form-group">
+							<label for="Password">Password</label>
+					<div><input type="password" [(ngModel)]="newUser.password" class="form-control" name="Password"  required> </div>
+				  </div>
+					<div class = "form-group">
+
+							<button [disabled]="!addForm.valid" class="btn btn-primary">
+									Login
+							</button>
+
+
+				</div>
+				
+			</fieldset>
 	</form>
-</article>
+	<div class="loginErrorField">{{loginErrorMessage}}</div>
+	<div *ngIf="addForm.hasError('required', 'Username')">Username is required</div>
+	<div *ngIf="addForm.hasError('required', 'Password')">Password is required</div>
 
-<footer>
-  <p>© Copyright 2019</p>
-</footer>
+		</div>
+	</div>
+</div>

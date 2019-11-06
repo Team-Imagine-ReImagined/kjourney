@@ -21,3 +21,19 @@ app.get('/getTrainingDetails', function(req, res) {
         res.send(rows);
     })
 })
+
+app.post('/login', function(req,res){
+    data = req.body;
+    console.log(data)
+    if(data.username  && data.password ){
+        //fetch user
+
+        //if user exists 
+        db.getUser(data.username, function(rows){
+            console.log(rows);
+        });
+        res.send({Message: "Successful login", Status: 200})
+    } else{
+        res.send({Message: "Feck off", Status: 421})
+    }
+})

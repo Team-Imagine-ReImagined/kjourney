@@ -46,3 +46,17 @@ exports.getTrainingDetails = function(ID, callback) {
         }
     )
 }
+
+exports.getUser = function(Username, callback){
+    db.query(
+        "SELECT ID, username, passwordHash, salt, failedAttempts, lockedOut, lockoutDate, isAdmin FROM authData where username = " + Username,
+        function (err, rows) {
+            if (err) {
+                logger.error("getUser failed with error: " + err)
+                throw err;
+            }
+            logger.debug("getUser for "+Username)
+            callback(rows);
+    })
+}
+
