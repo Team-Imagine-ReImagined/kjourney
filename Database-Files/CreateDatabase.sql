@@ -56,6 +56,7 @@ CREATE TABLE capability (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     leadID INT NOT NULL,
+    description VARCHAR(200),
     FOREIGN KEY (leadID) REFERENCES capLead(ID)
 );
 
