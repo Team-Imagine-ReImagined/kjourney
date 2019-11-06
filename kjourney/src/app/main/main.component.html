@@ -1,43 +1,33 @@
 <router-outlet></router-outlet>
 <header>
-  <table style="width: 100%;">
-    <tr>
-      <th>
+<table style="width: 100%;">
+	<tr>
+	<th>
 </th>
 <th>
-  <div class="search-bar" style="text-align: right;" display="inline-block;">
-    <input class=”text” type="text" placeholder="Filter..."/>
-    <style></style>
-  </div>
+<div class="search-bar" style="text-align: right;" display="inline-block;">
+	<input class=”text” type="text" placeholder="Filter..."/>
+</div>
 </th>
 </tr>
 </table>
 </header>
 
-<div class="topnav">
-  <a href="#">Your Role</a>
-  <a href="#">Support</a>
-</div>
-
 <section>
-  <article>
-	<table id="careerTable" style="width:100%">
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Summary</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr class="myRow" id="pop-over" *ngFor="let role of roles">
-				<td>{{ role.name }}</td>
-				<td>{{ role.summary }}</td>
-			</tr>
-		</tbody>
-	</table>
-  </article>
+	<article>
+		<table id="careerTable" style="width:100%">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Summary</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="myRow" id="pop-over" *ngFor="let role of roles | async">
+					<td><a routerLink="/role/{{ role.id }}">{{ role.name }}</a></td>
+					<td>{{ role.summary }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</article>
 </section>
-
-<footer>
-  <p>© Copyright 2019</p>
-</footer>

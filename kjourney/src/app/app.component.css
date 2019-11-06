@@ -6,8 +6,8 @@ body {
   background-image: linear-gradient(to bottom right, #61ab3f, white);
   background-attachment: fixed;
   background-size: cover;
-  overflow: hidden;
-  height: 100vh;
+  height: 200vh;
+  margin: 0;
   width: 100%;
   font-family: sans-serif;
 }

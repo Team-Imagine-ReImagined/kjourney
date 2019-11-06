@@ -1,0 +1,16 @@
+<div *ngIf="role | async; else loading; let role">
+	<dl>
+		<dt>Name</dt>
+			<dd>{{ role.name }}</dd>
+		<dt>Summary</dt>
+			<dd>{{ role.summary }}</dd>
+		<dt>Link</dt>
+			<dd>{{ role.link }}</dd>
+		<dt>Job family</dt>
+		 	<dd>{{ (role.jobFamId | asJobFamily | async).name }}</dd>
+		<dt>Band</dt>
+			<dd>{{ role.bandId }}</dd>
+		<a *ngIf="role.specLink" [href]="role.specLink">Job spec</a>
+	</dl>
+</div>
+<ng-template #loading>Waiting...</ng-template>

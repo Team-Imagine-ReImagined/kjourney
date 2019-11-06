@@ -10,14 +10,14 @@ import { Role } from '../../models/role'
 })
 export class MainComponent implements OnInit {
   private data: DataService
-  public roles: Role[]
+  public roles: Promise<Role[]>
 
   constructor(data: DataService) {
     this.data = data
+    this.roles = this.data.getRoles()
   }
 
-  async ngOnInit() {
-    this.roles = await this.data.getRoles()
+  ngOnInit() {
   }
 
 }

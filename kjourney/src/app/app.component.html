@@ -4,22 +4,21 @@
     <title>kJourney</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
 
-  <header>
-    <h1></h1>
-    <img src="logo.png" alt="kJourney Logo" display="inline-block" width="35%">
-  </header>
+  <div class="container">
+    <header>
+      <h1></h1>
+      <img src="assets/logo.png" alt="kJourney Logo" display="inline-block" width="35%">
+    </header>
 
-  <a routerLink="home" routerLinkActive="active">Home</a> <!-- TODO: Replace with navbar -->
-  <a routerLink="login">Login</a>
+    <a routerLink="home" routerLinkActive="active">Home</a> <!-- TODO: Replace with navbar -->
+    <a routerLink="login">Login</a>
 
-  <router-outlet></router-outlet>
-
-  <footer>
-    <p>© Copyright 2019</p>
-  </footer>
+    <router-outlet></router-outlet>
+  </div>
 
   </body>
 </html>

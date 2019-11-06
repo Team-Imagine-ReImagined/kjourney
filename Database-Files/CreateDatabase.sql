@@ -34,7 +34,7 @@ CREATE TABLE capLead (
     name VARCHAR(50) NOT NULL,
     photo VARCHAR(200) NOT NULL,
     message VARCHAR(100) NOT NULL
-); 
+);
 
 DROP TABLE IF EXISTS authData;
 CREATE TABLE authData (
@@ -72,6 +72,7 @@ CREATE TABLE jobRole (
     name VARCHAR(50) NOT NULL,
     summary VARCHAR(200) NOT NULL,
     link VARCHAR(25) NOT NULL,
+    specLink VARCHAR(250),
     jobFamID INT NOT NULL,
     bandID INT NOT NULL,
     FOREIGN KEY (jobFamID) REFERENCES jobFam(ID),

@@ -131,8 +131,6 @@ values ('Account Director', "Recognised leader and developer of Kainos talent, c
 insert into jobRole (name, summary, link, jobFamID, bandID)
 values ('Business Development Manager', "Serves the company's commercial and delivery interests, owns single initiatives or projects, advocates effective coaching and ensures that it happens.",
 'www.google.com', 1, 4);
-
-
 insert into jobRole (name, summary, link, jobFamID, bandID)
 values ('Lead Software Engineer', "Expert in their field, is consulted by others, supervises others, works well even if under pressure, effectively coaches people.",
 'www.google.com', 7, 5);
@@ -145,6 +143,12 @@ values ('Software Engineer', "Delivers with limited supervision, trusted to make
 insert into jobRole (name, summary, link, jobFamID, bandID)
 values ('Data Engineer', "Delivers with limited supervision, trusted to make tactical decisions.",
 'www.google.com', 8, 6);
+insert into jobRole (name, summary, link, specLink, jobFamID, bandID)
+values ('Security Engineer', "Works within teams to establish good security practices, supporting the design, development and testing of the service being delivered for both application and infrastructure.",
+'www.google.com', 'https://kainossoftwareltd.sharepoint.com/:w:/r/sites/CyberSecurity/_layouts/15/Doc.aspx?sourcedoc=%7B57E6C79D-489D-46BC-8E1E-FA97BF124C4C%7D&file=5%20Associate%20Security%20Engineer.docx&action=default&mobileredirect=true', 9, 7);
+insert into jobRole (name, summary, link, specLink, jobFamID, bandID)
+values ('Security Architect', "Expert in their field, is consulted by others, supervises others, works well even if under pressure, effectively coaches people.",
+'www.google.com', 'https://kainossoftwareltd.sharepoint.com/:w:/r/sites/CyberSecurity/_layouts/15/Doc.aspx?sourcedoc=%7BAFF6A3C7-8E7D-4CFC-9882-AA18CA4408CD%7D&file=3%20Security%20Architect.docx&action=default&mobileredirect=true', 9, 5);
 
 
 insert into training(name, description)

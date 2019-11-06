@@ -20,7 +20,7 @@ db.connect(function(err){
 
 exports.getRoles = function(callback) {
     db.query(
-        "SELECT name, summary FROM jobRole",
+        "SELECT id, name, summary FROM jobRole",
         function(err, rows) {
             if (err) {
                 logger.error("getRoles failed with error: " + err)
@@ -34,15 +34,45 @@ exports.getRoles = function(callback) {
 
 exports.getTrainingDetails = function(ID, callback) {
     db.query(
-        "SELECT id, name, description FROM training",
+        "SELECT ID, name, description FROM training",
         [ID],
-        function (err, rows) {
+        function(err, rows) {
             if (err) {
                 logger.error("getTrainingDetails failed with error: " + err)
                 throw err;
             }
             logger.debug("getTrainingDetails succeeded.")
             callback(rows);
+        }
+    )
+}
+
+exports.getRoleDetails = function(id, callback) {
+    db.query(
+        "SELECT id, name, summary, link, specLink, jobFamId, bandId FROM jobRole WHERE ID = ?",
+        [id],
+        function(err, rows) {
+            if (err) {
+                logger.error("getRoleDetails failed with error: " + err);
+                throw err;
+            }
+            logger.debug("getRoleDetails for id " + id + " succeeded.");
+            callback(rows[0]);
+        }
+    )
+}
+
+exports.getJobFamily = function(id, callback) {
+    db.query(
+        "SELECT name FROM jobFam WHERE ID = ?",
+        [id],
+        function(err, rows) {
+            if (err) {
+                logger.error("getJobFamily failed with error: " + err);
+                throw err;
+            }
+            logger.debug("getJobFamily for id " + id + " succeeded.");
+            callback(rows[0]);
         }
     )
 }
