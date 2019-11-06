@@ -25,7 +25,7 @@ CREATE TABLE band (
 DROP TABLE IF EXISTS responsibilities;
 CREATE TABLE responsibilities (
     ID int PRIMARY KEY AUTO_INCREMENT,
-    respDesc VARCHAR(50) NOT NULL
+    respDesc VARCHAR(200) NOT NULL
 );
 
 DROP TABLE IF EXISTS capLead;
@@ -70,7 +70,7 @@ DROP TABLE IF EXISTS jobRole;
 CREATE TABLE jobRole (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
-    summary VARCHAR(150) NOT NULL,
+    summary VARCHAR(200) NOT NULL,
     link VARCHAR(25) NOT NULL,
     jobFamID INT NOT NULL,
     bandID INT NOT NULL,
@@ -82,7 +82,7 @@ DROP TABLE IF EXISTS comp_Band;
 CREATE TABLE comp_Band (
     compID int NOT NULL,
     bandID int NOT NULL,
-    compDesc varchar(50) NOT NULL,
+    compDesc varchar(200) NOT NULL,
     PRIMARY KEY(compID, bandID),
 
     FOREIGN KEY (compID) REFERENCES competency(ID),
