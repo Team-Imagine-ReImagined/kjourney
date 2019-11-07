@@ -61,9 +61,9 @@ exports.getCompetencies = function(callback) {
     )
 }
 
-exports.getResponsibilities = function(callback) {
+exports.getResponsibilities = function(bandID, callback) {
     db.query(
-        "select resp_band.bandID, resp_band.respID, responsibilities.respDesc FROM responsibilities INNER JOIN resp_band ON responsibilities.ID = resp_Band.respID ORDER BY bandID",
+        "select resp_band.bandID, resp_band.respID, responsibilities.respDesc FROM responsibilities INNER JOIN resp_band ON responsibilities.ID = resp_Band.respID WHERE bandID =?", [bandID],
         function (err, rows) {
             if (err) {
                 logger.error("getResponsibilities failed with error: " + err);

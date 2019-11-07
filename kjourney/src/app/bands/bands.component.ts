@@ -22,7 +22,7 @@ export class BandsComponent implements OnInit {
       this.competencies = c;
     }));
 
-    this.data.getResponsibilities().subscribe((r => {
+    this.data.getResponsibilities(1).subscribe((r => {
       this.responsibilities = r;
     }));
   }

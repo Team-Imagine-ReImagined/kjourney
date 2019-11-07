@@ -21,7 +21,7 @@ export class DataService {
     return this.http.get<Competency[]>('api/competencies');
   }
 
-  public getResponsibilities(): Observable<Responsibility[]> {
-    return this.http.get<Responsibility[]>('api/responsibilities');
+  public getResponsibilities(bandID): Observable<Responsibility[]> {
+    return this.http.get<Responsibility[]>('api/responsibilities/' + bandID);
   }
 }

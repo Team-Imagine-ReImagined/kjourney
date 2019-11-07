@@ -28,8 +28,8 @@ app.get('/competencies', function(req, res) {
     })
 })
 
-app.get('/responsibilities', function(req, res) {
-    db.getResponsibilities(function(rows) {
+app.get('/responsibilities/:bandID', function(req, res) {
+    db.getResponsibilities(req.params.bandID, function(rows) {
         res.send(rows);
     })
 })
