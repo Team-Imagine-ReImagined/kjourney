@@ -12,7 +12,7 @@ export class BandsComponent implements OnInit {
   public competencies: Competency[]
 
   constructor(data: DataService) {
-    this.data = data
+    this.data = data;
   }
 
   async ngOnInit() {
