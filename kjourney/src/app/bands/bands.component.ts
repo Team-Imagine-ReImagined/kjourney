@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as Treeviz from 'treeviz';
 import { DataService } from '../data.service';
-import { Competency } from '../../models/competency'
+import { Competency } from '../../models/competency';
+import { Responsibility } from '../../models/responsibility';
 import { TrainingPerBand } from '../../models/trainingPerBand';
 
 @Component({
@@ -12,6 +13,7 @@ export class BandsComponent implements OnInit {
   private data: DataService
   public trainingPerBand: TrainingPerBand[]
   public competencies: Competency[]
+  public responsibilities: Responsibility[]
 
   constructor(data: DataService) {
     this.data = data;
@@ -22,8 +24,12 @@ export class BandsComponent implements OnInit {
       this.trainingPerBand = a;
     }));
 
-    this.data.getCompetencies().subscribe((c => {
+    this.data.getCompetencies(1).subscribe((c => {
       this.competencies = c;
+    }));
+
+    this.data.getResponsibilities(1).subscribe((r => {
+      this.responsibilities = r;
     }));
   }
 }

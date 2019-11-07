@@ -16,7 +16,7 @@ db.connect(function (err) {
         throw err;
     }
     logger.debug("Connected to MySQL.");
-})
+});
 
 exports.getRoles = function (callback) {
     db.query(
@@ -30,7 +30,7 @@ exports.getRoles = function (callback) {
             callback(rows);
         }
     )
-}
+};
 
 exports.getTrainingDetails = function (ID, callback) {
     db.query(
@@ -62,9 +62,9 @@ exports.getTrainingPerBand = function (bandID, callback) {
     )
 };
 
-exports.getCompetencies = function(callback) {
+exports.getCompetencies = function(bandID, callback) {
     db.query(
-        "select comp_band.bandID, competency.title, comp_band.compDesc FROM competency INNER JOIN comp_band ON competency.ID = comp_band.compID ORDER BY bandID",
+        "select comp_band.bandID, competency.title, comp_band.compDesc FROM competency INNER JOIN comp_band ON competency.ID = comp_band.compID WHERE comp_band.bandID=?", [bandID],
         function (err, rows) {
             if (err) {
                 logger.error("getCompetencies failed with error: " + err)
@@ -75,3 +75,19 @@ exports.getCompetencies = function(callback) {
         }
     )
 };
+
+exports.getResponsibilities = function(bandID, callback) {
+    db.query(
+        "select resp_band.bandID, resp_band.respID, responsibilities.respDesc FROM responsibilities INNER JOIN resp_band ON responsibilities.ID = resp_Band.respID WHERE bandID =?", [bandID],
+        function (err, rows) {
+            if (err) {
+                logger.error("getResponsibilities failed with error: " + err);
+                throw err;
+            }
+            logger.debug("getResponsibilities succeeded.");
+            callback(rows);
+        }
+    )
+};
+
+

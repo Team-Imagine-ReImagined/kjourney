@@ -17,14 +17,20 @@ app.listen(8002, function () {
     console.log('Express started on port 8002')
 });
 
-app.get('/competencies', function(req, res) {
-    db.getCompetencies(function(rows) {
+app.get('/training/:bandId', function (req, res) {
+    db.getTrainingPerBand(req.params.bandId, function(rows) {
         res.send(rows);
     })
 });
 
-app.get('/training/:bandId', function (req, res) {
-    db.getTrainingPerBand(req.params.bandId, function(rows) {
+app.get('/competencies/:bandID', function(req, res) {
+    db.getCompetencies(req.params.bandID, function(rows) {
+        res.send(rows);
+    })
+});
+
+app.get('/responsibilities/:bandID', function(req, res) {
+    db.getResponsibilities(req.params.bandID, function(rows) {
         res.send(rows);
     })
 });
