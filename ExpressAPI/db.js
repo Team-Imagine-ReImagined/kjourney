@@ -50,6 +50,15 @@ exports.getTrainingDetails = function(ID, callback) {
 exports.getRoleDetails = function(jobFamID, bandID, callback) {
     db.query(
         "SELECT id, name, summary, link, jobFamID, bandID" +
-        "FROM jobRoles WHERE jobFamID = " + jobFamID + " AND bandID = " + bandID + ";", )
+        "FROM jobRoles WHERE jobFamID = " + jobFamID + " AND bandID = " + bandID + ";",
+        [],
+        function (err, rows) {
+            if (err) {
+                logger.error("getRoleDetails failed with error: " + err);
+                throw err;
+            }
+            logger.debug("getRoleDetails succeeded.")
+            callback(rows);
+        }
     )
-}
+};

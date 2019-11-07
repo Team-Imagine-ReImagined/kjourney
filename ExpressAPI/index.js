@@ -21,3 +21,9 @@ app.get('/getTrainingDetails', function(req, res) {
         res.send(rows);
     })
 })
+
+app.get('/getRoleDetails', function(req, res) {
+    db.getTrainingDetails(req.query.jobFamID, req.query.bandID, function(rows) {
+        res.send(rows);
+    })
+})
