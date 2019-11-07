@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
+import { BandsComponent } from './bands/bands.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './_helpers/basic-auth.interceptor';
 
@@ -16,7 +17,8 @@ import { TokenInterceptor } from './_helpers/basic-auth.interceptor';
   declarations: [
     AppComponent,
     MainComponent,
-    LoginComponent
+    LoginComponent,
+    BandsComponent
   ],
   imports: [
     NgbModule,
