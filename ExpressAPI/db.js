@@ -66,10 +66,10 @@ exports.getResponsibilities = function(callback) {
         "select resp_band.bandID, resp_band.respID, responsibilities.respDesc FROM responsibilities INNER JOIN resp_band ON responsibilities.ID = resp_Band.respID ORDER BY bandID",
         function (err, rows) {
             if (err) {
-                logger.error("getResponsibilities failed with error: " + err)
+                logger.error("getResponsibilities failed with error: " + err);
                 throw err;
             }
-            logger.debug("getResponsibilities succeeded.")
+            logger.debug("getResponsibilities succeeded.");
             callback(rows);
         }
     )

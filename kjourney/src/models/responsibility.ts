@@ -1,6 +1,6 @@
 export class Responsibility {
-    bandID: string
-    respID: string
-    respDesc: string  
+    bandID: string;
+    respID: string;
+    respDesc: string;  
 }
 
