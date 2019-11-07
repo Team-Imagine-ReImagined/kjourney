@@ -18,7 +18,7 @@ export class BandsComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.data.getCompetencies().subscribe((c => {
+    this.data.getCompetencies(1).subscribe((c => {
       this.competencies = c;
     }));
 

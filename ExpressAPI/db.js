@@ -47,9 +47,9 @@ exports.getTrainingDetails = function(ID, callback) {
     )
 } 
 
-exports.getCompetencies = function(callback) {
+exports.getCompetencies = function(bandID, callback) {
     db.query(
-        "select comp_band.bandID, competency.title, comp_band.compDesc FROM competency INNER JOIN comp_band ON competency.ID = comp_band.compID ORDER BY bandID",
+        "select comp_band.bandID, competency.title, comp_band.compDesc FROM competency INNER JOIN comp_band ON competency.ID = comp_band.compID WHERE bandID =?", [bandID],
         function (err, rows) {
             if (err) {
                 logger.error("getCompetencies failed with error: " + err)

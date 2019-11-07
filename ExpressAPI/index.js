@@ -22,8 +22,8 @@ app.get('/getTrainingDetails', function(req, res) {
     })
 })
 
-app.get('/competencies', function(req, res) {
-    db.getCompetencies(function(rows) {
+app.get('/competencies/:bandID', function(req, res) {
+    db.getCompetencies(req.params.bandID, function(rows) {
         res.send(rows);
     })
 })
