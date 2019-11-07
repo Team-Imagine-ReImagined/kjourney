@@ -4,6 +4,11 @@ const express = require('express')
 const app = express()
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const secretKey = process.env.JWT_Secret
+var options = { cookies: true }
+var jwt = require('jsonwebtoken', options);
+//app.use(jwt.init(secretKey));
+
 app.use(express.json())
 
 const db = require('./db.js')
@@ -28,7 +33,7 @@ app.post('/login', function (req,res) {
     genericError = "Invalid username or password";
     lockedOutError = "Your account is locked out for ";
     lockOutDurationSeconds = 1800;
-    tokenValidDurationSeconds = 30;
+    tokenValidDurationSeconds = 1800;
     lockOutAttempts = 5;
 
     data = req.body;
@@ -71,11 +76,14 @@ app.post('/login', function (req,res) {
                     //User is not locked out and has supplied correct password, log them in
                     //JWT = generateJWT(retRows.ID, tokenValidDurationMinutes);
                     //db.StoreUserJWT(JWT, addMinutes(getCurrentDate(), tokenValidDurationMinutes));
+                    const  accessToken  =  jwt.sign({ id:  retRows.id, isAdmin: retRows.isAdmin }, secretKey, {
+                        expiresIn:  tokenValidDurationSeconds});
+
                     res.send({Status:200, User:{
                         "username": retRows.username,
                         "id": retRows.id,
                         "jwt": "REPLACEME",
-                        "isAdmin": retRows.isAdmin}})
+                        "authData":accessToken}})
 
                     //clear failed attempts as user has successfully logged in
                     if(retRows.failedAttempts != 0){

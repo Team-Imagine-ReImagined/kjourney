@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
         //log in etc
         var user : User = result.User;
         this.loginErrorMessage = "";
-        user.authdata = window.btoa(user.username + ':' + user.password);
+        user.authdata = result.authData;
         localStorage.setItem('currentUser', JSON.stringify(user));
         console.log("local storage is")
         console.log(localStorage.getItem('currentUser'));
