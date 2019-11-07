@@ -10,42 +10,57 @@ const db = mysql.createConnection({
     database: process.env.DB_NAME
 });
 
-db.connect(function(err){
+db.connect(function (err) {
     if (err) {
-        logger.error("Failed to connect to MySQL.")
+        logger.error("Failed to connect to MySQL.");
         throw err;
     }
     logger.debug("Connected to MySQL.");
 })
 
-exports.getRoles = function(callback) {
+exports.getRoles = function (callback) {
     db.query(
         "SELECT name, summary FROM jobRole",
-        function(err, rows) {
+        function (err, rows) {
             if (err) {
-                logger.error("getRoles failed with error: " + err)
+                logger.error("getRoles failed with error: " + err);
                 throw err;
             }
-            logger.debug("getRoles succeeded.")
+            logger.debug("getRoles succeeded.");
             callback(rows);
         }
     )
 }
 
-exports.getTrainingDetails = function(ID, callback) {
+exports.getTrainingDetails = function (ID, callback) {
     db.query(
         "SELECT id, name, description FROM training",
         [ID],
         function (err, rows) {
             if (err) {
-                logger.error("getTrainingDetails failed with error: " + err)
+                logger.error("getTrainingDetails failed with error: " + err);
                 throw err;
             }
-            logger.debug("getTrainingDetails succeeded.")
+            logger.debug("getTrainingDetails succeeded.");
             callback(rows);
         }
     )
-} 
+};
+
+
+exports.getTrainingPerBand = function (bandID, callback) {
+    db.query(
+        "SELECT band_Training.bandID, training.name, training.trainingType FROM band_Training INNER JOIN training ON band_Training.trainingID = training.ID WHERE band_Training.bandID=?",[bandID],
+    function (err, rows) {
+            if (err) {
+                logger.error("getTrainingPerBand failed with error: " + err);
+                throw err;
+            }
+            logger.debug("getTrainingPerBand succeeded.");
+            callback(rows);
+        }
+    )
+};
 
 exports.getCompetencies = function(callback) {
     db.query(
@@ -59,4 +74,4 @@ exports.getCompetencies = function(callback) {
             callback(rows);
         }
     )
-}
+};
