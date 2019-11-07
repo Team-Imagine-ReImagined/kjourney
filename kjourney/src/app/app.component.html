@@ -12,14 +12,43 @@
     <img src="assets/logo.png" alt="kJourney Logo" display="inline-block" width="35%">
   </header>
 
-  <a routerLink="home" routerLinkActive="active">Home</a> <!-- TODO: Replace with navbar -->
-  <a routerLink="login">Login</a>
-
+  <div class="topnav">
+    <a routerLink="login">Login</a>
+    <a routerLink="home" routerLinkActive="active">Home</a>
+    <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Bands</button>
+        <div id="bands" class="dropdown-content">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+      </div>
+      </div>
   <router-outlet></router-outlet>
-
+  
   <footer>
     <p>© Copyright 2019</p>
   </footer>
 
   </body>
 </html>
+
+<script>
+    function showBands() {
+      document.getElementById("bands").classList.toggle("show");
+    }
+    
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+</script>
