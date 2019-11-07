@@ -39,15 +39,14 @@ CREATE TABLE capLead (
 DROP TABLE IF EXISTS authData;
 CREATE TABLE authData (
     ID INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) NOT NULL,
+    username VARCHAR(50) NOT NULL UNIQUE,
     passwordHash VARCHAR(60) NOT NULL,
-    salt VARCHAR(50) NOT NULL,
-    failedAttempts INT NOT NULL,
-    lockedOut BOOL NOT NULL,
-    lockoutDate DATETIME NOT NULL,
-    jwt VARCHAR(50) NOT NULL,
-    jwtDate DATETIME NOT NULL,
-    isAdmin BOOLEAN NOT NULL
+    failedAttempts INT NOT NULL DEFAULT 0,
+    lockedOut BOOL NOT NULL DEFAULT FALSE,
+    lockoutDate VARCHAR(30) DEFAULT NULL,
+    jwt VARCHAR(50),
+    jwtDate VARCHAR(30) DEFAULT NULL,
+    isAdmin BOOLEAN NOT NULL DEFAULT 0
 );
 
 DROP TABLE IF EXISTS capability;
