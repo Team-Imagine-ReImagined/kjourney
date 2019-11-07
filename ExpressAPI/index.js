@@ -71,7 +71,11 @@ app.post('/login', function (req,res) {
                     //User is not locked out and has supplied correct password, log them in
                     //JWT = generateJWT(retRows.ID, tokenValidDurationMinutes);
                     //db.StoreUserJWT(JWT, addMinutes(getCurrentDate(), tokenValidDurationMinutes));
-                    res.send({Status:401, Message:"Successful login"})
+                    res.send({Status:200, User:{
+                        "username": retRows.username,
+                        "id": retRows.id,
+                        "jwt": "REPLACEME",
+                        "isAdmin": retRows.isAdmin}})
 
                     //clear failed attempts as user has successfully logged in
                     if(retRows.failedAttempts != 0){
