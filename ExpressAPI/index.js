@@ -27,3 +27,9 @@ app.get('/competencies', function(req, res) {
         res.send(rows);
     })
 })
+
+app.get('/responsibilities', function(req, res) {
+    db.getResponsibilities(function(rows) {
+        res.send(rows);
+    })
+})

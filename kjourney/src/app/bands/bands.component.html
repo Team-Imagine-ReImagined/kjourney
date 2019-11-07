@@ -21,18 +21,18 @@
 
 <section>
   <article>
-	<table id="band" style="width:100%">
+  <table id="competency" style="width:100%">
 		<thead>
 			<tr>
-                <th>BandID</th>
-				<th>Title</th>
+				<th>BandID</th>
+				<th>Competency</th>
                 <th>Description</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr class="Name" id="pop-over" *ngFor="let competency of competencies">
+			<tr class="myRow" id="pop-over" *ngFor="let competency of competencies">
 				<td>{{ competency.bandID }}</td>
-                <td>{{ competency.title }}</td>
+				<td>{{ competency.title }}</td>
                 <td>{{ competency.compDesc }}</td>
 			</tr>
 		</tbody>
@@ -40,6 +40,23 @@
   </article>
 </section>
 
-<footer>
-  <p>© Copyright 2019</p>
-</footer>
+<section>
+  <article>
+<table id="responsibility" style="width:100%">
+		<thead>
+			<tr>
+				<th>BandID</th>
+				<th>Responsibility</th>
+                <th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="myRow" id="pop-over" *ngFor="let responsibility of responsibilities">
+				<td>{{ responsibility.bandID }}</td>
+				<td>{{ responsibility.respID }}</td>
+                <td>{{ responsibility.respDesc }}</td>
+			</tr>
+		</tbody>
+	</table>
+  </article>
+</section>

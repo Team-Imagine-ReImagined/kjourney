@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Role } from '../models/role';
 import { Competency } from '../models/competency';
+import { Responsibility } from '../models/responsibility';
 import { Observable } from 'rxjs';
 
 
@@ -18,5 +19,9 @@ export class DataService {
 
   public getCompetencies(): Observable<Competency[]> {
     return this.http.get<Competency[]>('api/competencies');
+  }
+
+  public getResponsibilities(): Observable<Responsibility[]> {
+    return this.http.get<Responsibility[]>('api/responsibilities');
   }
 }
