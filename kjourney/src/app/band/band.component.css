@@ -1,0 +1,55 @@
+h1
+{
+    text-align: center;
+}
+
+  .button1 {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+  
+  .button1:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+  * {
+	box-sizing: border-box;
+  }
+
+
+  header {
+	background-color:transparent;
+	padding: 30px;
+	text-align: left;
+	font-size: 35px;
+	color: black;
+  }
+
+  article {
+	border: 2px solid black;
+	float: right;
+	padding: 25px;
+    width: 100%;
+    text-overflow: auto;
+	background-color: white;
+	border-radius: 15px;
+  }
+
+  footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #676766;
+	padding: 0px;
+	text-align: center;
+	color: white;
+  }
