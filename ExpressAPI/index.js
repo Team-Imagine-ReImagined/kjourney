@@ -11,7 +11,11 @@ app.get('/roles', function(req, res) {
         res.send(rows)
     })
 })
-
+app.get('/bandRole', function(req, res) {
+    db.getBandRole(function(rows) {
+        res.send(rows)
+    })
+})
 app.listen(8002, function () {
     console.log('Express started on port 8002')
 });

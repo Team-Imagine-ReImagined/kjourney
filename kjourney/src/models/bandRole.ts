@@ -1,3 +1,5 @@
 export class BandRole {
-    role: string
+      name: string
+      role: string
+      level: number
 }

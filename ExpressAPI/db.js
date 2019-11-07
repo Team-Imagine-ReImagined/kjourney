@@ -31,6 +31,19 @@ exports.getRoles = function(callback) {
         }
     )
 }
+exports.getBandRole = function(callback) {
+    db.query(
+        "SELECT band.name AS bandname, jobrole.name AS jobrolename, band.level AS bandlevel FROM band INNER JOIN jobRole ON band.ID = jobRole.bandID ORDER BY band.level",
+        function(err, rows) {
+            if (err) {
+                logger.error("getBandRole failed with error: " + err)
+                throw err;
+            }
+            logger.debug("getBandRole succeeded.")
+            callback(rows);
+        }
+    )
+}
 
 exports.getTrainingDetails = function(ID, callback) {
     db.query(

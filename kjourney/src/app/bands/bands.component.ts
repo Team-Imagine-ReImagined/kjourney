@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service'
-import { Band } from '../../models/band'
+import { BandRole } from '../../models/bandRole'
 
 @Component({
   selector: 'app-bands',
@@ -9,14 +9,14 @@ import { Band } from '../../models/band'
 })
 export class BandsComponent implements OnInit {
   private data: DataService
-  public bands: Band[]
+  public bandRole: BandRole[]
 
   constructor(data: DataService) {
     this.data = data
   }
 
   async ngOnInit() {
-    this.bands = await this.data.getBands()
+    this.bandRole = await this.data.getBandRole()
   }
 
 }

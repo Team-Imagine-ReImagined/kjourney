@@ -16,10 +16,10 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr class="Name" id="pop-over" *ngFor="let band of bands">
-                      <td>{{ band.name }}</td>
-                      <td>{{ band.role }}</td>
-                      <td>{{ band.level }}</td>
+                  <tr class="Name" id="pop-over" *ngFor="let bandRole of bandRole">
+                      <td>{{ bandRole.bandname }}</td>
+                      <td>{{ bandRole.jobrolename }}</td>
+                      <td>{{ bandRole.bandlevel }}</td>
                   </tr>
               </tbody>
           </table>

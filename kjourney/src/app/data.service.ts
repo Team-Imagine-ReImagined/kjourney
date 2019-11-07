@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Role } from '../models/role';
-import { Band } from '../models/band';
+import { BandRole } from '../models/bandRole';
 
 
 @Injectable({
@@ -14,7 +14,7 @@ export class DataService {
   public getRoles(): Promise<Role[]> {
     return this.http.get<Role[]>('api/roles').toPromise()
   }
-  public getBands(): Promise<Band[]> {
-    return this.http.get<Band[]>('api/band').toPromise()
+  public getBandRole(): Promise<BandRole[]> {
+    return this.http.get<BandRole[]>('api/bandRole').toPromise()
   }
 }
