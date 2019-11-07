@@ -1,14 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
+import * as Treeviz from 'treeviz'
+import { DataService } from '../data.service'
+import { Competency } from '../../models/competency'
 
 @Component({
   templateUrl: './bands.component.html',
   styleUrls: ['./bands.component.css']
 })
 export class BandsComponent implements OnInit {
+  private data: DataService
+  public competencies: Competency[]
 
-  constructor() { }
+  constructor(data: DataService) {
+    this.data = data
+  }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.data.getCompetencies().subscribe((c => {
+      this.competencies = c;
+    }));
   }
 
 }

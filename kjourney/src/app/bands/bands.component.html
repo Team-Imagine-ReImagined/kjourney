@@ -1,1 +1,45 @@
-<p>bands works!</p>
+<router-outlet></router-outlet>
+<header>
+  <table style="width: 100%;">
+    <tr>
+      <th>
+</th>
+<th>
+  <div class="search-bar" style="text-align: right;" display="inline-block;">
+    <input class=”text” type="text" placeholder="Filter..."/>
+    <style></style>
+  </div>
+</th>
+</tr>
+</table>
+</header>
+
+<div class="topnav">
+  <a href="#">Your Role</a>
+  <a href="#">Support</a>
+</div>
+
+<section>
+  <article>
+	<table id="band" style="width:100%">
+		<thead>
+			<tr>
+                <th>BandID</th>
+				<th>Title</th>
+                <th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="Name" id="pop-over" *ngFor="let competency of competencies">
+				<td>{{ competency.bandID }}</td>
+                <td>{{ competency.title }}</td>
+                <td>{{ competency.compDesc }}</td>
+			</tr>
+		</tbody>
+	</table>
+  </article>
+</section>
+
+<footer>
+  <p>© Copyright 2019</p>
+</footer>
