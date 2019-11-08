@@ -35,7 +35,8 @@ exports.getRoles = function(callback) {
 
 exports.getTrainingDetails = function(ID, callback) {
     db.query(
-        "SELECT * FROM training",
+        "SELECT id, name, description FROM training",
+        [ID],
         function (err, rows) {
             if (err) {
                 logger.error("getTrainingDetails failed with error: " + err)
