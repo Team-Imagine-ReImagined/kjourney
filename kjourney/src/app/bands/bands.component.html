@@ -3,15 +3,15 @@
   <table style="width: 100%;">
     <tr>
       <th>
-</th>
-<th>
-  <div class="search-bar" style="text-align: right;" display="inline-block;">
-    <input class=”text” type="text" placeholder="Filter..."/>
-    <style></style>
-  </div>
-</th>
-</tr>
-</table>
+      </th>
+      <th>
+        <div class="search-bar" style="text-align: right;" display="inline-block;">
+          <input class=”text” type="text" placeholder="Filter..."/>
+          <style></style>
+        </div>
+      </th>
+    </tr>
+  </table>
 </header>
 
 <div class="topnav">
@@ -21,12 +21,31 @@
 
 <section>
   <article>
+    <table id="rolesTable" style="width:100%">
+      <thead>
+      <tr>
+        <th>Band Level</th>
+        <th>Training Name</th>
+        <th>Training Type</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="myRow" id="pop-over" *ngFor="let trainingPerBands of trainingPerBand">
+        <td>{{ trainingPerBands.bandID }}</td>
+        <td>{{ trainingPerBands.name }}</td>
+        <td>{{ trainingPerBands.trainingType}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </article>
+
+  <article>
 	<table id="band" style="width:100%">
 		<thead>
 			<tr>
-                <th>BandID</th>
+        <th>BandID</th>
 				<th>Title</th>
-                <th>Description</th>
+        <th>Description</th>
 			</tr>
 		</thead>
 		<tbody>
