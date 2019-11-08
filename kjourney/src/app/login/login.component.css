@@ -93,4 +93,39 @@
 	padding: 0px;
 	text-align: center;
 	color: white;
-  }
+	}
+	
+	.card{
+		border: 2px solid #00000088;
+		margin: 0 auto;
+		padding: 25px;
+		width: 35%;
+		background-color: rgba(97, 168, 63, 0.6);
+		border-radius: 15px;
+	}
+
+	.form-control{
+		font-size: small;
+		font-family: 'Courier New', Courier, monospace
+	}
+
+	.card-header{
+		font-size: x-large;
+		font-family: sans-serif;
+		text-align: center;
+		color: white;
+		background-color: rgba(97, 168, 63, 0);
+		border: 2px solid #00000000;
+		
+	}
+
+	.btn btn-primary{
+		background-color:  rgba(0, 103, 159, 0.9);
+	}
+
+	.loginErrorField{
+		font-size: small;
+		font-family: sans-serif;
+		text-align: left;
+		color: red;
+	}

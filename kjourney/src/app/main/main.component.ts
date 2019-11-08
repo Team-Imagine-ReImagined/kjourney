@@ -17,7 +17,9 @@ export class MainComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.roles = await this.data.getRoles()
+    this.data.getRoles().subscribe((c => {
+      this.roles = c;
+    }));
   }
 
 }

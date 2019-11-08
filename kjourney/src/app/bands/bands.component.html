@@ -1,15 +1,4 @@
 <router-outlet></router-outlet>
-<header>
-  <table style="width: 100%;">
-    <tr>
-      <th>
-</th>
-<th>
-</th>
-</tr>
-</table>
-</header>
-
 <div class="topnav">
   <a href="#">Your Role</a>
   <a href="#">Support</a>
@@ -17,19 +6,40 @@
 
 <section>
   <article>
-  <table id="competency" style="width:100%">
+    <table id="rolesTable" style="width:100%">
+      <thead>
+      <tr>
+        <th>Band Level</th>
+        <th>Training Name</th>
+        <th>Training Type</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="myRow" id="pop-over" *ngFor="let trainingPerBands of trainingPerBand">
+        <td>{{ trainingPerBands.bandID }}</td>
+        <td>{{ trainingPerBands.name }}</td>
+        <td>{{ trainingPerBands.trainingType}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </article>
+</section>
+
+  <section>
+  <article>
+	<table id="band" style="width:100%">
 		<thead>
 			<tr>
-				<th>BandID</th>
-				<th>Competency</th>
-                <th>Description</th>
+        <th>BandID</th>
+				<th>Title</th>
+        <th>Description</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr class="myRow" id="pop-over" *ngFor="let competency of competencies">
+			<tr class="Name" id="pop-over" *ngFor="let competency of competencies">
 				<td>{{ competency.bandID }}</td>
-				<td>{{ competency.title }}</td>
-                <td>{{ competency.compDesc }}</td>
+        <td>{{ competency.title }}</td>
+        <td>{{ competency.compDesc }}</td>
 			</tr>
 		</tbody>
 	</table>
@@ -43,14 +53,14 @@
 			<tr>
 				<th>BandID</th>
 				<th>Responsibility</th>
-                <th>Description</th>
+         <th>Description</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr class="myRow" id="pop-over" *ngFor="let responsibility of responsibilities">
 				<td>{{ responsibility.bandID }}</td>
 				<td>{{ responsibility.respID }}</td>
-                <td>{{ responsibility.respDesc }}</td>
+        <td>{{ responsibility.respDesc }}</td>
 			</tr>
 		</tbody>
 	</table>
