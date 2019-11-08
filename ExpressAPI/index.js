@@ -76,14 +76,15 @@ app.post('/login', function (req,res) {
                     //User is not locked out and has supplied correct password, log them in
                     //JWT = generateJWT(retRows.ID, tokenValidDurationMinutes);
                     //db.StoreUserJWT(JWT, addMinutes(getCurrentDate(), tokenValidDurationMinutes));
-                    const  accessToken  =  jwt.sign({ id:  retRows.id, isAdmin: retRows.isAdmin }, secretKey, {
+                    var  accessToken  =  jwt.sign({ id:  retRows.id, isAdmin: retRows.isAdmin, date : Date.now() }, secretKey, {
                         expiresIn:  tokenValidDurationSeconds});
+
+                    db.storeUserToken(retRows.id, accessToken, (Date.now() + (tokenValidDurationSeconds * 1000)));
+
 
                     res.send({Status:200, User:{
                         "username": retRows.username,
-                        "id": retRows.id,
-                        "jwt": "REPLACEME",
-                        "authData":accessToken}})
+                        "id": retRows.id}, Auth: accessToken})
 
                     //clear failed attempts as user has successfully logged in
                     if(retRows.failedAttempts != 0){
@@ -102,7 +103,7 @@ app.post('/login', function (req,res) {
                     if(retRows.failedAttempts >= lockOutAttempts - 1){
                         //user has failed login too many times
                         newLockedOutDate = Date.now() + (lockOutDurationSeconds * 1000); //1800 seconds - 30 minutes
-                        console.log(newLockedOutDate);
+
                         db.setUserLockedout(retRows.id, newLockedOutDate);
 
                         
@@ -128,33 +129,22 @@ app.post('/login', function (req,res) {
 
 app.post('/SecureGenerateUser', function(req,res){
     data = req.body;
-    console.log(data);
 
     db.getUser(data.username, function(retRows){
-
-        console.log(retRows);
-        console.log((retRows.length))
 
         if(retRows.length){
             retRow = retRows[0];
             res.send({ErrorMessage: "User "+data.username+" already exists"})
 
-            console.log(retRow.lockedOut)
-            if(retRow.lockedOut === 1){
-                console.log('true for lockedout')
-            } else{
-                console.log('false for lockedout')
-            }
         } else{
 
-            
+
             
     bcrypt.genSalt(saltRounds, function(err, salt) {
         bcrypt.hash(data.password, salt, function(err, hash) {
             // Store hash in your password DB.
-            console.log("Hash is "+hash)
-            db.secureGenerateUser({"username":data.username, "passwordHash":hash, "lockedOut":false},
-            function(insertID){console.log('insertID is '+insertID)});
+
+            db.secureGenerateUser({"username":data.username, "passwordHash":hash, "lockedOut":false});
         });
         if(err){
             res.send({ErrorMessage: err})
@@ -171,7 +161,35 @@ app.post('/SecureGenerateUser', function(req,res){
 });
 
 
-function generateJWT(userID, durationMinutes){
-    //add JWT implementation
+app.post('/InvalidateUserToken', function(req, res){
+
+
+    if(req.headers.authorization){
+        header = req.headers.authorization.split(" ")[1]
+
+        db.clearUserToken(header);
+    }
+})
+
+function checkToken(tokenIn, UserID){
+    returnedToken = db.getUserToken(UserID);
+    //if a token is returned
+    if(returnedToken.length){
+        rToken = returnedToken[0];
+        if(Date.now() > rToken.jwtDate){
+            //token expried, return false;
+            return false;
+        } else{
+            if(rToken.jwt === tokenIn){
+                //token matches user token
+                return true;
+            } else{
+                return false;
+                //token doen't match user token
+            }
+        }
+    } else{
+        return false;
+    }
 }
 

@@ -44,14 +44,17 @@ export class LoginComponent implements OnInit {
     var response = this.http.post('/api/login', this.newUser).toPromise().then( (result : any) => {
       if(result.Status === 200){
         //log in etc
+
         var user : User = result.User;
         this.loginErrorMessage = "";
-        user.authdata = result.authData;
+
+        user.authenticationdata = result.Auth;
         localStorage.setItem('currentUser', JSON.stringify(user));
-        console.log("local storage is")
-        console.log(localStorage.getItem('currentUser'));
+
         this.authenticationService.setUser(user);
         this.router.navigate([this.returnUrl]);
+
+        this.newUser = new User();
 
       } else {
         this.loginErrorMessage = result.Message;

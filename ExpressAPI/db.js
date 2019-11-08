@@ -48,7 +48,7 @@ exports.getTrainingDetails = function(ID, callback) {
 }
 
 exports.getUser = function(Username, callback){
-    console.log("in get User");
+
     db.query(
         "SELECT id, username, passwordHash, failedAttempts, lockedOut, lockoutDate, jwt, jwtDate, isAdmin " +
         "FROM authData WHERE username = '"+Username+"' LIMIT 1;",
@@ -62,7 +62,7 @@ exports.getUser = function(Username, callback){
     })
 }
 
-exports.secureGenerateUser = function(data, readyFn){
+exports.secureGenerateUser = function(data){
 
     db.query('INSERT INTO authData SET ?', data,
     function(error, results, fields){
@@ -72,7 +72,6 @@ exports.secureGenerateUser = function(data, readyFn){
             throw error;
         }
         logger.debug("Generating user "+ data.username)
-        readyFn(results.insertId);
     });
 }
 
@@ -109,4 +108,40 @@ exports.resetLockout = function(userID){
         }
     });
 }
+
+exports.storeUserToken = function(UserID, tokenValue, tokenDate){
+    logger.debug("Storing token for user "+ data.username)
+    db.query('UPDATE authData set jwt = "'+ tokenValue + '", jwtDate = "'+tokenDate+ '" where ID = '+UserID+';',
+    function(error){
+        if(error){
+            logger.error(error);
+            throw error;
+        }
+    });
+}
+
+exports.getUserToken = function(UserID){
+    logger.debug("Getting token for user "+ data.username)
+    db.query('Select jwt, jwtDate from authData where ID = '+UserID+' LIMIT 1 ;',
+    function(error, rows){
+        if(error){
+            logger.error(error);
+            throw error;
+        }
+        return rows;
+    });
+}
+
+exports.clearUserToken = function(tokenToClear){
+    logger.debug("Clearing token for user "+ data.username)
+    logger.debug(tokenToClear);
+    db.query('UPDATE authData set jwt = NULL, jwtDate = 0 WHERE jwt = "'+tokenToClear+'";',
+    function(error){
+        if(error){
+            logger.error(error);
+            throw error;
+        }
+    });
+}
+
 

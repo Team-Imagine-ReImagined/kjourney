@@ -28,7 +28,12 @@ export class AuthenticationService {
 
     logout() {
         // remove user from local storage to log user out
+        this.http.post("/api/InvalidateUserToken", this.currentUserValue.authenticationdata).toPromise()
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
+        //this.currentUserSubject.unsubscribe();
+        
+        //todo request to express to invalidate token
+
     }
 }

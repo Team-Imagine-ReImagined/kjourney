@@ -44,7 +44,7 @@ CREATE TABLE authData (
     failedAttempts INT NOT NULL DEFAULT 0,
     lockedOut BOOL NOT NULL DEFAULT FALSE,
     lockoutDate VARCHAR(30) DEFAULT NULL,
-    jwt VARCHAR(50),
+    jwt VARCHAR(200),
     jwtDate VARCHAR(30) DEFAULT NULL,
     isAdmin BOOLEAN NOT NULL DEFAULT 0
 );
