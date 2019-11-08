@@ -34,22 +34,3 @@ export class TokenInterceptor implements HttpInterceptor {
     return next.handle(request);
     }
 }
-
-
-
-
-//   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    
-//     const currentUser = this.auth.currentUserValue;
-//     if(currentUser && currentUser.authdata){
-//     request = request.clone({
-//       setHeaders: {
-//         Authorization: `Bearer ${currentUser.authdata}`
-//       }
-//     }); 
-//     return next.handle(request);
-//   }
-    
-// }
-
- 

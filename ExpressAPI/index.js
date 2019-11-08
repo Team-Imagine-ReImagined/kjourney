@@ -7,7 +7,7 @@ const saltRounds = 10;
 const secretKey = process.env.JWT_Secret
 var options = { cookies: true }
 var jwt = require('jsonwebtoken', options);
-//app.use(jwt.init(secretKey));
+
 
 app.use(express.json())
 
