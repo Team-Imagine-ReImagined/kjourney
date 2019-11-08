@@ -6,7 +6,7 @@ body {
   background-image: linear-gradient(to bottom right, #61ab3f, white);
   background-attachment: fixed;
   background-size: cover;
-  overflow: hidden;
+  overflow: visible;
   height: 100vh;
   width: 100%;
   font-family: sans-serif;
@@ -21,7 +21,7 @@ body {
 
 /* Style the top navigation bar */
 .topnav {
-  overflow: hidden;
+  overflow: visible;
   background-color: #333;
 }
 
