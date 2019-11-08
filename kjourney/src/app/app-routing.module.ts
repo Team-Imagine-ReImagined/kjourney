@@ -3,7 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import { BandsComponent } from './bands/bands.component';
+import { BandComponent } from './band/band.component';
 import { AuthGuard } from './_helpers/auth.guard';
+
 
 
 
@@ -22,7 +24,14 @@ const routes: Routes = [
   },
   // otherwise redirect to home
   {
+
+    path: '', redirectTo: 'login', pathMatch: 'full'
+  },
+  {
+    path: 'band', component: BandComponent
+
     path: '**', redirectTo: ''
+
   }
 ];
 
