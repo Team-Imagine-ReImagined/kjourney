@@ -1,7 +1,9 @@
 require("dotenv").config();
 
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
+const url = require('url');
+app.use(express.json());
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const secretKey = process.env.JWT_Secret
@@ -11,23 +13,35 @@ var jwt = require('jsonwebtoken', options);
 
 app.use(express.json())
 
-const db = require('./db.js')
+const db = require('./db.js');
 
-app.get('/roles', function(req, res) {
-    db.getRoles(function(rows) {
+app.get('/roles', function (req, res) {
+    db.getRoles(function (rows) {
         res.send(rows)
     })
-})
+});
 
 app.listen(8002, function () {
     console.log('Express started on port 8002')
 });
 
-app.get('/getTrainingDetails', function(req, res) {
-    db.getTrainingDetails(req.query.id, function(rows) {
+app.get('/training/:bandId', function (req, res) {
+    db.getTrainingPerBand(req.params.bandId, function(rows) {
         res.send(rows);
     })
-})
+});
+
+app.get('/competencies/:bandID', function(req, res) {
+    db.getCompetencies(req.params.bandID, function(rows) {
+        res.send(rows);
+    })
+});
+
+app.get('/responsibilities/:bandID', function(req, res) {
+    db.getResponsibilities(req.params.bandID, function(rows) {
+        res.send(rows);
+    })
+});
 
 app.post('/login', function (req,res) {
     genericError = "Invalid username or password";
@@ -56,13 +70,13 @@ app.post('/login', function (req,res) {
                     lockedOut = false
                     db.resetLockout(retRows.id);
                 } else{
-                    
+
                     //user's lockout duration has not expired
                     lockoutFormat = Math.round(((retRows.lockoutDate - Date.now()) /60000));
                     res.send({Status: 401, Message: lockedOutError + lockoutFormat + ' minutes'})
                 }
             }
-            
+
             if(!lockedOut){
                 //either user was not locked out, or is no longer locked out
                 //hash supply password & compare
@@ -98,7 +112,7 @@ app.post('/login', function (req,res) {
                         //if somehow null, set to 0 to avoid app crash
                         retRows.failedAttempts = 0;
                     }
-                    
+
                     db.setUserLockoutCount(retRows.id, (retRows.failedAttempts + 1) );
                     if(retRows.failedAttempts >= lockOutAttempts - 1){
                         //user has failed login too many times
@@ -106,7 +120,7 @@ app.post('/login', function (req,res) {
 
                         db.setUserLockedout(retRows.id, newLockedOutDate);
 
-                        
+
                         res.send({Status: 401, Message: lockedOutError + (Math.round(lockOutDurationSeconds/60)) + ' minutes'});
                     } else{
                         res.send({Status: 401, Message: genericError});
@@ -139,7 +153,7 @@ app.post('/SecureGenerateUser', function(req,res){
         } else{
 
 
-            
+
     bcrypt.genSalt(saltRounds, function(err, salt) {
         bcrypt.hash(data.password, salt, function(err, hash) {
             // Store hash in your password DB.
@@ -153,10 +167,10 @@ app.post('/SecureGenerateUser', function(req,res){
         }
     });
 
-        
+
 
 }
-    
+
 })
 });
 
