@@ -8,6 +8,8 @@ import * as nomnoml from 'nomnoml';
 })
 export class View1Component implements OnInit {
 
+ // TODO: Rethink this solution. Is there any way we could replace this with something more interactive? More customised to the user?
+
   constructor() { }
 
   public source = ['[Business Development|\n' +
