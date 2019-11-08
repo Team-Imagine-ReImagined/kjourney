@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { HttpClientModule } from '@angular/common/http'
-import { DiagramModule } from '@syncfusion/ej2-angular-diagrams';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,8 +30,7 @@ import { BandComponent } from './band/band.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule,
-    DiagramModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
