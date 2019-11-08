@@ -4,51 +4,161 @@
     <title>kJourney</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+    
+    <style>
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .navbar {
+        overflow: hidden;
+      }
+
+      .navbar a {
+        float: left;
+        font-size: 16px;
+        color: navy;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      .dropdown {
+        float: left;
+        overflow: hidden;
+      }
+      .dropdown-submenu {
+        float: left;
+        overflow: hidden;
+      }
+
+      .dropdown .dropbtn {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        color: navy;
+        padding: 14px 16px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+      }
+
+      .dropdown:hover .dropbtn,
+      .navbar a:hover {
+        background-color: inherit;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        float: none;
+        color: #283583;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #ddd;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+    </style>
   </head>
   <body>
 
-  <header>
-    <h1></h1>
-    <img src="assets/logo.png" alt="kJourney Logo" display="inline-block" width="35%">
-  </header>
+    <header></header>
 
-  <div class="topnav">
-    <a routerLink="login">Login</a>
-    <a routerLink="home" routerLinkActive="active">Home</a>
-    <div class="dropdown">
-        <button onclick="myFunction()" class="dropbtn">Bands</button>
-        <div id="bands" class="dropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+    <div class="container">
+      <div style="text-align: center;">
+        <img src="assets/newLogo.png" alt="kJourney Logo" display="inline-block" width="25%">
+      </div>
+
+      <div class="full" style="width:100%">
+        <div class="left" style="width:50%; float:left;">
+          <div class="navbar" style="padding-top:3%">
+            <a routerLink="home" routerLinkActive="active">Home</a>
+            <a routerLink="login">Login</a>
+            <div class="dropdown">
+              <button class="dropbtn">Bands 
+      <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+                <a routerLink="bands">All</a>
+                <a href="#">Executive</a>
+                <a href="#">Leadership Community</a>
+                <a href="#">Principle</a>
+                <a href="#">Manager</a>
+                <a href="#">Consultant</a>
+                <a href="#">Senior Associate</a>
+                <a href="#">Associate</a>
+                <a href="#">Trainee</a>
+                <a href="#">Apprentice</a>
+              </div>
+            </div>
+            <div class="dropdown">
+              <button class="dropbtn">Capabilities & Job Family
+      <i class="fa fa-caret-down"></i>
+              </button>
+              <ul>
+                <div class="dropdown-content">
+                  <li style="list-style:none;">
+                    <a href="#">Sales & Marketing</a>
+                  </li>
+                  <li class="dropdown">
+                  <li class="dropdown-submenu">
+                    <ul class="dropdown-content">
+                      <li style="list-style:none;">
+                        <a href="#">Business Development</a>
+                      </li>
+                      <li style="list-style:none;">
+                        <a href="#">Account Management</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <a href="#">Technical</a>
+                  <a href="#">Consulting</a>
+                  <a href="#">Experience Design</a>
+                  <a href="#">Management</a>
+                  <a href="#">Central Services Teams</a>
+                </div>
+              </ul>
+            </div>
+
+          </div>
         </div>
-      </div>
-      </div>
-  <router-outlet></router-outlet>
-  
-  <footer>
-    <p>© Copyright 2019</p>
-  </footer>
+        <div class="right" style="width:50%; float:right;">
+          <div class="search-bar" style="text-align: right;" display="inline-block;">
+            <input class=”text” type="text" placeholder="Filter..."/>
+            <style></style>
+          </div>
+        </div>
 
+        <router-outlet></router-outlet>
+      </div>
+    </div>
   </body>
 </html>
 
 <script>
-    function showBands() {
-      document.getElementById("bands").classList.toggle("show");
-    }
-    
-    // Close the dropdown menu if the user clicks outside of it
-    window.onclick = function(event) {
-      if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-          var openDropdown = dropdowns[i];
-          if (openDropdown.classList.contains('show')) {
-            openDropdown.classList.remove('show');
-          }
-        }
-      }
-    }
+$(document).ready(function(){
+  $('.dropdown-submenu a.test').on("click", function(e){
+    $(this).next('ul').toggle();
+    e.stopPropagation();
+    e.preventDefault();
+  });
+});
 </script>
