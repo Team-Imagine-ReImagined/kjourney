@@ -178,7 +178,6 @@ exports.getUserToken = function(UserID){
 
 exports.clearUserToken = function(tokenToClear){
     logger.debug("Clearing token for user "+ data.username)
-    logger.debug(tokenToClear);
     db.query('UPDATE authData set jwt = NULL, jwtDate = 0 WHERE jwt = "'+tokenToClear+'";',
     function(error){
         if(error){

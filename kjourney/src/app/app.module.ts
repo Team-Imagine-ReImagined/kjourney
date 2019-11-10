@@ -10,11 +10,12 @@ import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 
 import { BandComponent } from './band/band.component';
-import { View1Component } from './view1/view1.component';
+import { GraphViewComponent } from './GraphView/GraphView.component';
 
 import { BandsComponent } from './bands/bands.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './_helpers/basic-auth.interceptor';
+import { ErrorInterceptor } from './_helpers/error.interceptor';
 
 
 
@@ -23,7 +24,7 @@ import { TokenInterceptor } from './_helpers/basic-auth.interceptor';
     AppComponent,
     MainComponent,
     BandComponent,
-    View1Component,
+    GraphViewComponent,
     LoginComponent,
     BandsComponent
 
@@ -38,6 +39,10 @@ import { TokenInterceptor } from './_helpers/basic-auth.interceptor';
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
+    multi: true
+  },{
+    provide: HTTP_INTERCEPTORS,
+    useClass: ErrorInterceptor,
     multi: true
   }],
   bootstrap: [AppComponent]

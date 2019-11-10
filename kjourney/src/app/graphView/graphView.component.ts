@@ -2,11 +2,11 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import * as nomnoml from 'nomnoml';
 
 @Component({
-  selector: 'app-view1',
-  templateUrl: './view1.component.html',
+  selector: 'app-GraphView',
+  templateUrl: './GraphView.component.html',
   encapsulation: ViewEncapsulation.None
 })
-export class View1Component implements OnInit {
+export class GraphViewComponent implements OnInit {
 
  // TODO: Rethink this solution. Is there any way we could replace this with something more interactive? More customised to the user?
 
@@ -250,7 +250,7 @@ export class View1Component implements OnInit {
       nextPos -= this.source.length;
     }
 
-    const output = '#.role: fill=#FFFFFF\n ' + this.source[prevPos] + this.source[pos] + this.source[nextPos];
+    const output = '#.role: fill=#FFFFFF\n ' + this.source[pos];
     const canvas = document.getElementById('target-canvas');
     nomnoml.draw(canvas, output);
   }
