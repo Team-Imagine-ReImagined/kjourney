@@ -160,4 +160,10 @@ article {
   border-radius: 15px;
 }
 
+.dropdown-content {
+  position: fixed;
+  top: auto;
+  left: auto;
+  width: inherit;
+}
 
