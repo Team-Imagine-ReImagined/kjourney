@@ -24,11 +24,11 @@ const routes: Routes = [
   },
   
   {
-    path: 'band', component: BandComponent, canActivate: [AuthGuard]
-  },{
 
-    path: '**', redirectTo: ''
-
+    path: '', redirectTo: 'login', pathMatch: 'full'
+  },
+  {
+    path: 'band', component: BandComponent
   }
 ];
 
