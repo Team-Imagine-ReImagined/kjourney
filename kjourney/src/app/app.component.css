@@ -3,7 +3,7 @@
 }
 
 body {
-  background-image: linear-gradient(to bottom right, #61ab3f, white);
+  background-image: linear-gradient(to bottom right,white, white);
   background-attachment: fixed;
   background-size: cover;
   overflow: visible;

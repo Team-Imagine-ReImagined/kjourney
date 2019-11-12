@@ -10,7 +10,7 @@ import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 
 import { BandComponent } from './band/band.component';
-import { GraphViewComponent } from './GraphView/GraphView.component';
+import { GraphViewComponent } from './graphView/GraphView.component';
 
 import { BandsComponent } from './bands/bands.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
