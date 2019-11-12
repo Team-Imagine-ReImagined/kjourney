@@ -4,9 +4,8 @@ import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import { BandsComponent } from './bands/bands.component';
 import { BandComponent } from './band/band.component';
+import { CapabilityComponent} from './capability/capability.component';
 import { AuthGuard } from './_helpers/auth.guard';
-
-
 
 
 const routes: Routes = [
@@ -22,13 +21,14 @@ const routes: Routes = [
   {
     path: 'bands', component: BandsComponent, canActivate: [AuthGuard]
   },
-  
   {
     path: 'band', component: BandComponent, canActivate: [AuthGuard]
-  },{
-
+  },
+  {
+    path: 'capability', component: CapabilityComponent, canActivate: [AuthGuard]
+  },
+  {
     path: '**', redirectTo: ''
-
   }
 ];
 

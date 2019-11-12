@@ -1,1 +1,47 @@
-<p>capability works!</p>
+<router-outlet></router-outlet>
+<section>
+  <article>
+    <table id="capabilityDescription" style="width:100%">
+      <thead>
+      <tr>
+        <th>Capability Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="myRow" id="pop-over" *ngFor="let description of descriptions">
+      </tbody>
+    </table>
+  </article>
+</section>
+
+<section>
+  <article>
+    <table id="band" style="width:100%">
+      <thead>
+      <tr>
+        <th>BandID</th>
+        <th>Title</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </article>
+</section>
+
+<section>
+  <article>
+    <table id="responsibility" style="width:100%">
+      <thead>
+      <tr>
+        <th>BandID</th>
+        <th>Responsibility</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </article>
+</section>
