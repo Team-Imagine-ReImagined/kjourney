@@ -19,6 +19,8 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { HomeComponent } from './home/home.component';
 import { CapabilityComponent } from './capability/capability.component';
 import { JobfamilyComponent } from './jobfamily/jobfamily.component';
+import { NavbarcapComponent } from './navbarcap/navbarcap.component';
+import { NavbarjobfamilyComponent } from './navbarjobfamily/navbarjobfamily.component';
 
 
 
@@ -32,7 +34,9 @@ import { JobfamilyComponent } from './jobfamily/jobfamily.component';
     BandsComponent,
     HomeComponent,
     CapabilityComponent,
-    JobfamilyComponent
+    JobfamilyComponent,
+    NavbarcapComponent,
+    NavbarjobfamilyComponent
 
   ],
   imports: [
