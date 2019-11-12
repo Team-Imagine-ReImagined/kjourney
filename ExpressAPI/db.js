@@ -93,8 +93,6 @@ exports.getResponsibilities = function(bandID, callback) {
     )
 };
 
-
-
 exports.getUser = function(Username, callback){
     db.query(
         `SELECT IDFromUserDataTable AS id, username, passwordHash, failedAttempts, lockedOut, lockoutDate, jwt, jwtDate, isAdmin 
@@ -119,6 +117,19 @@ exports.secureGenerateUser = function(data, errorCallback, successCallback){
         }
         logger.debug("Generating user "+ data.username)
         successCallback();
+    });
+};
+
+exports.dataGenerateUser = function(data, callback){
+    db.query('INSERT INTO userData SET ?', data,
+    function(error, results, fields){
+        if(error)
+        {
+            logger.error(error);
+            callback(null, error)
+        }
+        logger.debug("Generating user "+ data.name)
+        callback(results.insertId);
     });
 };
 
@@ -268,3 +279,29 @@ exports.getBandName = function(bandID, callback) {
         }
     )
 }
+exports.getUserInfo = function(userID, callback) {
+    db.query(
+        "select ud.name as userName, ud.photo as userPhoto, jr.Name as jobRole, jr.summary as jobRoleSummary, b.ID as bandID, b.name as band, jf.name as jobFamily, c.name as capability, cl.name as leadName, cl.photo as leadPhoto from jobRole jr inner join userData ud on jr.ID = ud.roleID inner join jobFam jf on jr.jobFamID = jf.ID inner join band b on b.ID = jr.bandID inner join capability c on jf.ID = c.ID inner join capLead cl on c.leadID = cl.ID where ud.ID = ?", [userID],
+        function (err, rows) {
+            if (err) {
+                logger.error("getUserInfo failed with error: " + err);
+                throw err;
+            }
+            logger.debug("getUserInfo succeeded.");
+            callback(rows);
+        }
+    )
+};
+exports.getHierarchy = function(bandID, callback) {
+    db.query(
+        "select b.name as band, jr.name as jobRole, jf.name as jobFamily, c.name as capability, cl.name as leadName from band b inner join jobRole jr on b.ID = jr.bandID inner join jobFam jf on jr.jobFamID = jf.ID inner join capability c on jf.capID = c.ID inner join capLead cl on c.leadID = cl.ID WHERE bandID <?", [bandID],
+        function (err, rows) {
+            if (err) {
+                logger.error("getHierarchy failed with error: " + err);
+                throw err;
+            }
+            logger.debug("getHierarchy succeeded.");
+            callback(rows);
+        }
+    )
+};

@@ -30,8 +30,6 @@ export class BandsComponent implements OnInit, OnDestroy {
 
     this.bandID = +this.route.snapshot.queryParamMap.get('bandID');
 
-    console.log('Searching for Band ID: ' + this.bandID)
-
     this.data.getTrainingPerBand(this.bandID).subscribe((a => {
       this.trainingPerBands = a;
     }));
@@ -49,7 +47,6 @@ export class BandsComponent implements OnInit, OnDestroy {
     }));
 
     this.data.getBandName(this.bandID).subscribe((bn => {
-      console.log(bn)
       this.bands = bn;
     }))
 
