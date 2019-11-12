@@ -6,7 +6,8 @@ DROP TABLE IF EXISTS training;
 CREATE TABLE training (
     ID int PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
-    description VARCHAR(200) NOT NULL
+    description VARCHAR(200) NOT NULL,
+    trainingType VARCHAR(100)
 );
 
 DROP TABLE IF EXISTS competency;

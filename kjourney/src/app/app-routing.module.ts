@@ -17,18 +17,15 @@ const routes: Routes = [
     path: '', component: MainComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'home', component: MainComponent
+    path: 'home', component: MainComponent, canActivate: [AuthGuard]
   },
   {
     path: 'bands', component: BandsComponent, canActivate: [AuthGuard]
   },
-  // otherwise redirect to home
+  
   {
-
-    path: '', redirectTo: 'login', pathMatch: 'full'
-  },
-  {
-    path: 'band', component: BandComponent
+    path: 'band', component: BandComponent, canActivate: [AuthGuard]
+  },{
 
     path: '**', redirectTo: ''
 

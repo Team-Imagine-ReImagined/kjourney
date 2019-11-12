@@ -8,8 +8,10 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const secretKey = process.env.JWT_Secret
 var options = { cookies: true }
-var jwt = require('jsonwebtoken', options);
+var jwtGen = require('jsonwebtoken', options);
+var jwt = require('express-jwt');
 
+app.use(jwt({ secret: process.env.JWT_Secret}).unless({path: ['/login', '/SecureGenerateUser']}));
 
 app.use(express.json())
 
@@ -90,7 +92,7 @@ app.post('/login', function (req,res) {
                     //User is not locked out and has supplied correct password, log them in
                     //JWT = generateJWT(retRows.ID, tokenValidDurationMinutes);
                     //db.StoreUserJWT(JWT, addMinutes(getCurrentDate(), tokenValidDurationMinutes));
-                    var  accessToken  =  jwt.sign({ id:  retRows.id, isAdmin: retRows.isAdmin, date : Date.now() }, secretKey, {
+                    var  accessToken  =  jwtGen.sign({ id:  retRows.id, isAdmin: retRows.isAdmin, date : Date.now() }, secretKey, {
                         expiresIn:  tokenValidDurationSeconds});
 
                     db.storeUserToken(retRows.id, accessToken, (Date.now() + (tokenValidDurationSeconds * 1000)));
@@ -145,65 +147,42 @@ app.post('/SecureGenerateUser', function(req,res){
     data = req.body;
 
     db.getUser(data.username, function(retRows){
-
         if(retRows.length){
             retRow = retRows[0];
             res.send({ErrorMessage: "User "+data.username+" already exists"})
 
         } else{
-
-
-
-    bcrypt.genSalt(saltRounds, function(err, salt) {
+        bcrypt.genSalt(saltRounds, function(err, salt) {
         bcrypt.hash(data.password, salt, function(err, hash) {
             // Store hash in your password DB.
-
             db.secureGenerateUser({"username":data.username, "passwordHash":hash, "lockedOut":false});
         });
         if(err){
             res.send({ErrorMessage: err})
-        } else{
-            res.send({SuccessMessage: "Worked for user "+data.username})
+                } else{
+                    res.send({SuccessMessage: "Worked for user "+data.username})
+                }
+            });
         }
-    });
-
-
-
-}
-
-})
+    })
 });
 
 
-app.post('/InvalidateUserToken', function(req, res){
-
-
-    if(req.headers.authorization){
+app.get('/InvalidateUserToken', function(req, res){
+        if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
         header = req.headers.authorization.split(" ")[1]
-
         db.clearUserToken(header);
+        res.sendStatus(200)
     }
 })
 
-function checkToken(tokenIn, UserID){
-    returnedToken = db.getUserToken(UserID);
-    //if a token is returned
-    if(returnedToken.length){
-        rToken = returnedToken[0];
-        if(Date.now() > rToken.jwtDate){
-            //token expried, return false;
-            return false;
-        } else{
-            if(rToken.jwt === tokenIn){
-                //token matches user token
-                return true;
-            } else{
-                return false;
-                //token doen't match user token
-            }
-        }
-    } else{
-        return false;
-    }
-}
+app.get('/IsUserValid', function(req,res){
+    //blank endpoint for uservalidation
+    //jwt will auto return 401 if invalid 
+    //or if we reach here, we send 200 
+    res.status(200).send({Status:200})
+})
+
+
+
 
