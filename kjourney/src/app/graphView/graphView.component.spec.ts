@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GraphViewComponent } from './graphView.component';
+import { GraphViewComponent } from './GraphView.component';
 
 describe('GraphViewComponent', () => {
   let component: GraphViewComponent;

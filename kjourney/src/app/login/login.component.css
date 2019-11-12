@@ -2,104 +2,13 @@
 	box-sizing: border-box;
   }
 
-  body {
-	background-image: linear-gradient(to bottom right, #61ab3f, white);
-	background-attachment: fixed;
-	font-family: sans-serif;
-  }
+ 
 
-  /* Style the header */
-  .header {
-	background-color: #f1f1f1;
-	padding: 20px;
-	text-align: center;
-  }
-
-  /* Style the top navigation bar */
-  .topnav {
-	overflow: hidden;
-	background-color: #333;
-  }
-
-  /* Style the topnav links */
-  .topnav a {
-	float: left;
-	display: block;
-	color: #f2f2f2;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-  }
-
-  /* Change color on hover */
-  .topnav a:hover {
-	color:#009fe3;
-	text-decoration: underline;
-  }
-
-  header {
-	background-color:transparent;
-	padding: 30px;
-	text-align: center;
-	font-size: 35px;
-	color: black;
-  }
-
-  .search-bar input{
-  height: 75px;
-  width: 900px;
-  padding: 24px;
-  font-size: 24pt;
-  border-radius: 37.5px;
-  border-color: black;
-  }
-
-  ::placeholder{
-	color: lightgray;
-	font-size: 24pt;
-  }
-
-  nav {
-	border-radius: 15px;
-	float: left;
-	width: 10%;
-	background: #00cbe4;
-	padding: 20px;
-	border: 2px solid black;
-	color: white;
-  }
-
-  nav ul {
-	overflow: scroll;
-	list-style-type: none;
-	padding: 0;
-  }
-
-  article {
-	border: 2px solid black;
-	margin: 0 auto;
-	padding: 25px;
-	width: 35%;
-	background-color: white;
-	border-radius: 15px;
-  }
-
-  footer {
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	width: 100%;
-	background-color: #676766;
-	padding: 0px;
-	text-align: center;
-	color: white;
-	}
-	
 	.card{
 		border: 2px solid #00000088;
 		margin: 0 auto;
 		padding: 25px;
-		width: 35%;
+		width: 45%;
 		background-color: rgba(97, 168, 63, 0.6);
 		border-radius: 15px;
 	}
@@ -110,12 +19,14 @@
 	}
 
 	.card-header{
-		font-size: x-large;
+		font-size: xx-large;
 		font-family: sans-serif;
 		text-align: center;
 		color: white;
 		background-color: rgba(97, 168, 63, 0);
 		border: 2px solid #00000000;
+		text-decoration: underline;
+		text-decoration-color: whitesmoke;
 		
 	}
 
@@ -129,3 +40,14 @@
 		text-align: left;
 		color: red;
 	}
+
+
+	.container {
+		display: flex;
+		justify-content: center;
+	}
+	.center {
+		width: 800px;
+	}
+
+	
