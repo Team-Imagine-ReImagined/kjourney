@@ -12,18 +12,18 @@ insert into capLead (name, photo, message)
 values ('Eoin McCoy', 'image link', 'Anyone for Sbubby?');
 
 
-insert into capability (name, leadID)
-values ('Sales & Marketing', 1);
-insert into capability (name, leadID)
-values ('Technical', 2);
-insert into capability (name, leadID)
-values ('Consulting', 3);
-insert into capability (name, leadID)
-values ('Experience Design', 4);
-insert into capability (name, leadID)
-values ('Management', 5);
-insert into capability (name, leadID)
-values ('Central Services Teams', 6);
+insert into capability (name, leadID, description)
+values ('Sales & Marketing', 1, 'Selling and marketing');
+insert into capability (name, leadID, description)
+values ('Technical', 2, 'Making the things that are to be marketed and sold');
+insert into capability (name, leadID, description)
+values ('Consulting', 3, 'Asking customers about making the thing they have been marketed');
+insert into capability (name, leadID, description)
+values ('Experience Design', 4, 'Making the user experience better');
+insert into capability (name, leadID, description)
+values ('Management', 5, 'Managing the making, selling and marketing of the things');
+insert into capability (name, leadID, description)
+values ('Central Services Teams', 6, 'We keep Kainos happy');
 
 
 insert into band (name, level)
