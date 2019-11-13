@@ -38,4 +38,9 @@ export class DataService {
   public getBandName(bandID): Observable<Band[]> {
     return this.http.get<Band[]>('api/bands/' + bandID);
   }
+
+  public postsecureGenerateUser(username, password, roleID, fullname): Promise<any>{
+    //is promise[any] as it could possibly include error handling information
+    return this.http.post('api/secureGenerateUser', {username, password, roleID, fullname}).toPromise()
+  }
 }

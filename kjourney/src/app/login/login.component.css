@@ -50,4 +50,21 @@
 		width: 800px;
 	}
 
-	
+	.reg-link{
+		text-align: right;
+		margin-top: 10%;
+	}
+
+	.regDropDown{
+		justify-content: right;
+		margin: 5px;
+		text-align: right;
+		font-size: large;
+		width: 100%;
+	}
+
+	.disabled{
+		color: grey;
+	}
+
+

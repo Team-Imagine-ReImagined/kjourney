@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule} from '@angular/forms'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { HttpClientModule } from '@angular/common/http'
 
@@ -8,8 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
-
-import { GraphViewComponent } from './graphView/GraphView.component';
 
 import { BandsComponent } from './bands/bands.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -20,20 +18,20 @@ import { JobfamilyComponent } from './jobfamily/jobfamily.component';
 import { RolesComponent } from './roles/roles.component';
 import { NavbarcapComponent } from './navbarcap/navbarcap.component';
 import { NavbarjobfamilyComponent } from './navbarjobfamily/navbarjobfamily.component';
-
+import { RegisterUserComponent } from './register-user/register-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    GraphViewComponent,
     LoginComponent,
     BandsComponent,
     CapabilityComponent,
     JobfamilyComponent,
     RolesComponent,
     NavbarcapComponent,
-    NavbarjobfamilyComponent
+    NavbarjobfamilyComponent,
+    RegisterUserComponent
   ],
   imports: [
     NgbModule,
@@ -41,6 +39,7 @@ import { NavbarjobfamilyComponent } from './navbarjobfamily/navbarjobfamily.comp
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

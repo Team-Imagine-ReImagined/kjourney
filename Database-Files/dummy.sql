@@ -548,3 +548,9 @@ values ('Central Services Teams', 6);
     insert into jobFam (name, capID)
     values ('People', 6);
 
+insert into userData(name, roleID) values ("James Matchett", 1);
+insert into authData(IDFromUserDataTable, username, passwordHash) values (1, "testUser", "$2b$10$dI/p10kY4Lr1HyKqJT/I8.98G/XBaM6zdaAcYeXrMChw09CGaa0z2");
+
+insert into userData(name, roleID) values ("Conor McCormick", 2);
+insert into authData(IDFromUserDataTable, username, passwordHash) values (2, "testUser2", "$2b$10$4jPeKWX3a1McugFxv7ugVecl0Fuy8YMf.T5jVtUDkHP/FIaEd3Q2K");
+

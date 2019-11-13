@@ -1,0 +1,84 @@
+
+<router-outlet></router-outlet>
+
+<div class="container">
+    <div class="center">
+		<div class="card">
+		<u><b><h2 class="card-header">Register User</h2></b></u>
+		<div class="card-body"> 
+	        <form (ngSubmit)="registerUser(form)" #regForm="ngForm" [formGroup]="form"> 
+			    <fieldset>                    
+                    <div class="form-group">
+                        <label for="Username">Username</label>
+                        <input type="text" [(ngModel)]="regUser.username" class="form-control" formControlName="username" required>
+                    </div>
+
+                    <div class="form-group">
+                            <label for="Username">Full Name</label>
+                            <input type="text" [(ngModel)]="regUser.fullname" class="form-control" formControlName="fullname" required>
+                        </div>
+
+                    <div class="form-group">    
+                        <label for="password">Password</label>
+                        <input type="password" [(ngModel)]="regUser.password" class="form-control" formControlName="password" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" [(ngModel)]="regUser.confirmPassword"  class="form-control" formControlName="confirmPassword" required>
+                    </div>
+
+
+                    <div>
+                        <label>Capability: </label>
+                        <select [(ngModel)]="regUser.capabilityID" formControlName = "capDropDown" class="regDropDown" (change)="filterJobFam()" required>
+                            <option *ngFor="let capability of capabilities" value={{capability.value}}>
+                                {{capability.viewValue}}
+                            </option>
+                            </select>
+                    </div>
+
+                    <div>
+                            <label>Job Family: </label>
+                            <select class="dropDown" formControlName='jobFamDropDown' [(ngModel)]="regUser.jobFamilyID"  (change)="filterRoles()" required>
+                                <option  *ngFor="let jobFam of jobFamilies" value={{jobFam.value}}>
+                                    {{jobFam.viewValue}}
+                                </option>
+                            </select>
+                    </div>
+
+                    <div>
+                            <label>Role: </label>
+                            <select class="dropDown" formControlName='jobRoleDropDown' [(ngModel)]="regUser.roleID" required>
+                                <option *ngFor="let role of roles" value={{role.value}}>
+                                    {{role.viewValue}}
+                                </option>
+                            </select>
+                    </div>
+
+
+
+                    <div class="row">
+                            <div class="col">
+                              <div class = "form-group">
+      
+                                      <button [disabled]="!regForm.valid" class="btn btn-primary">
+                                              Register
+                                      </button>
+                          </div>
+                      </div>
+                      <div class="col">
+                          <div class = "reg-link">
+                              <a href="/login">Already have an account?</a>
+                          </div>
+                      </div>
+
+      
+                      </div>
+                      <div class="loginErrorField">{{loginErrorMessage}}</div>
+                </fieldset>
+            </form>
+		    </div>
+	    </div>
+    </div>
+</div>
