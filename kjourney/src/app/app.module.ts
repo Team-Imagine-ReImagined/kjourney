@@ -22,6 +22,7 @@ import { JobfamilyComponent } from './jobfamily/jobfamily.component';
 import { RolesComponent } from './roles/roles.component';
 import { NavbarcapComponent } from './navbarcap/navbarcap.component';
 import { NavbarjobfamilyComponent } from './navbarjobfamily/navbarjobfamily.component';
+import { RoleComponent } from './role/role.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { NavbarjobfamilyComponent } from './navbarjobfamily/navbarjobfamily.comp
     JobfamilyComponent,
     RolesComponent
     NavbarcapComponent,
-    NavbarjobfamilyComponent
+    NavbarjobfamilyComponent,
+    RoleComponent
   ],
   imports: [
     NgbModule,
