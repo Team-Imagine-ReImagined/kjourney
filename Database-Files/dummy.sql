@@ -1,15 +1,15 @@
 insert into capLead (name, photo, message)
-values ('Bane Bafferty', 'image link', 'I have no idea what im doing please send help.');
+values ('Shane Rafferty', 'image link', 'Leader of Technical Capability.');
 insert into capLead (name, photo, message)
-values ('Conor McCormick', 'image link', 'Im in charge of AI and Josh.');
+values ('Conor McCormick', 'image link', 'Leader of AI Capability');
 insert into capLead (name, photo, message)
-values ('Roisin Goodman', 'image link', 'Oh look another video with me in it!!!');
+values ('Roisin Goodman', 'image link', 'Leader of Sales & Marketing Capability');
 insert into capLead (name, photo, message)
-values ('Chris Thompson', 'image link', 'Im literally so swole check my biceps m8.');
+values ('Jessica McMillen', 'image link', 'Leader of Experience Design Capability.');
 insert into capLead (name, photo, message)
-values ('Thomas Boyle', 'image link', 'Lad, are you serious lad? Lad.');
+values ('Thomas Boyle', 'image link', 'Leader of Consulting Capability.');
 insert into capLead (name, photo, message)
-values ('Eoin McCoy', 'image link', 'Anyone for Sbubby?');
+values ('Eoin McCoy', 'image link', 'Leader of Central Services Teams');
 
 
 insert into capability (name, leadID)
@@ -88,13 +88,13 @@ insert into jobRole (name, summary, link, jobFamID, bandID)
 values ('Head of Business Unit', "Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.",
         'www.google.com', 2, 1);
 insert into jobRole (name, summary, link, jobFamID, bandID)
-values ('Sales Director', "Does sales and stuff",
+values ('Sales Director', "Owns and leads sales",
         'www.google.com', 1, 2);
 insert into jobRole (name, summary, link, jobFamID, bandID)
-values ('Sales Director', "Does sales and stuff",
+values ('Sales Director', "Owns and leads sales",
         'www.google.com', 2, 2);
 insert into jobRole (name, summary, link, jobFamID, bandID)
-values ('Business Development Director', "Recognised leader and developer of Kainos talent, continuously improves Kainos, comfortable in novel situations, owns multiple initiatives, accountable for delivery at Programme level.",
+values ('Business Development Director', "Recognised leader and developer of Kainos talent, continuously improves Kainos, comfortable in novel situations, owns multiple initiatives, delivery at Programme level.",
         'www.google.com', 1, 3);
 insert into jobRole (name, summary, link, jobFamID, bandID)
 values ('Account Director', "Recognised leader and developer of Kainos talent, continuously improves Kainos, comfortable in novel situations, owns multiple initiatives, accountable for delivery at Programme level.",
@@ -118,7 +118,7 @@ insert into jobRole (name, summary, link, jobFamID, bandID)
 values ('Head of Business Unit', "Owns and leads a business area (e.g. a BU) or supporting function (e.g. Legal or HR) with responsibility for budget, people and profit & loss.",
         'www.google.com', 3, 1);
 insert into jobRole (name, summary, link, jobFamID, bandID)
-values ('Sales Director', "Does sales and stuff.",
+values ('Sales Director', "Owns and leads sales",
         'www.google.com', 3, 2);
 insert into jobRole (name, summary, link, jobFamID, bandID)
 values ('Senior Sales Executive', "Recognised leader and developer of Kainos talent, continuously improves Kainos, comfortable in novel situations, owns multiple initiatives, accountable for delivery at Programme level.",
@@ -175,9 +175,9 @@ values ('Security Engineer', "Works within teams to establish good security prac
 
 
 insert into training(name, description, trainingType)
-values ('People Manager Toolkit', 'Learn how to manage little baby developers', 'Technical skills');
+values ('People Manager Toolkit', 'Learn how to manage teams in Kainos', 'Professional skills');
 insert into training(name, description, trainingType)
-    values ('SA Development', 'Learn the responsibilities required in your new role', 'Professional skills');
+    values ('SA Development', 'Learn the responsibilities required in your new role', 'Technical skills');
 insert into training(name, description, trainingType)
 values ('Kainos as a Business', 'Learn how Kainos business processes operate', 'Development programmes');
 insert into training(name, description, trainingType)
