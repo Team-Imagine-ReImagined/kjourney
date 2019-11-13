@@ -14,7 +14,7 @@
       </thead>
       <tbody>
       <tr class="myRow" id="pop-over" *ngFor="let capability of capabilities">
-        <td>{{ capability.desc }}</td>
+        <td>{{ capability.capDescription }}</td>
       </tbody>
     </table>
   </article>
@@ -27,17 +27,22 @@
       <thead>
       <tr>
         <th>Name</th>
-        <th>Description</th>
-      </tr>
-      <tr>
-        test
+        <th>Photo</th>
       </tr>
       </thead>
       <tbody>
           <tr class="myRow" id="pop-over" *ngFor="let capability of capabilities">
-              <td></td>
+              <td>{{ capability.name }}</td>
+              <img src="{{ capability.photo }}" style="width: 150px;">
+          </tr>
       </tbody>
     </table>
+    <table id="band" style="width: 100%">
+        <th>Desc</th>
+        <tr class="myRow" id="pop-over" *ngFor="let capability of capabilities">
+            <td style="text-align: center;">{{ capability.message }}</td>
+        </tr>
+      </table>
   </article>
 </section>
 

@@ -86,3 +86,6 @@ article {
   border-radius: 15px;
 }
 
+th {
+  text-align: center;
+}
