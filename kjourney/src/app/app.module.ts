@@ -16,7 +16,6 @@ import { BandsComponent } from './bands/bands.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './_helpers/basic-auth.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
-import { HomeComponent } from './home/home.component';
 import { CapabilityComponent } from './capability/capability.component';
 import { JobfamilyComponent } from './jobfamily/jobfamily.component';
 import { RolesComponent } from './roles/roles.component';
@@ -32,10 +31,9 @@ import { NavbarjobfamilyComponent } from './navbarjobfamily/navbarjobfamily.comp
     GraphViewComponent,
     LoginComponent,
     BandsComponent,
-    HomeComponent,
     CapabilityComponent,
     JobfamilyComponent,
-    RolesComponent
+    RolesComponent,
     NavbarcapComponent,
     NavbarjobfamilyComponent
   ],
