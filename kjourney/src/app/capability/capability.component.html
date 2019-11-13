@@ -1,47 +1,111 @@
 <router-outlet></router-outlet>
-<section>
+<br>
+<br>
+<br>
+<br>
+
+<h1 *ngFor="let capability of capabilities" style= "margin-top: 45px;">{{ capability.name }}</h1>
+<section id="capSection">
   <article>
-    <table id="capabilityDescription" style="width:100%">
+    <table>
       <thead>
       <tr>
         <th>Capability Description</th>
       </tr>
       </thead>
       <tbody>
-      <tr class="myRow" id="pop-over" *ngFor="let description of descriptions">
+      <tr class="myRow" id="pop-over" *ngFor="let capability of capabilities">
+        <td id="tableCenter">{{ capability.capDescription }}</td>
       </tbody>
     </table>
   </article>
 </section>
 
-<section>
-  <article>
-    <table id="band" style="width:100%">
+<section id="capSection;">
+  <article id="articleSpacing">
+    <h1>Capability Lead</h1>
+    <table>
       <thead>
       <tr>
-        <th>BandID</th>
-        <th>Title</th>
+        <th>Name</th>
         <th>Description</th>
+        <th>Photo</th>
       </tr>
       </thead>
       <tbody>
+          <tr class="myRow" id="tableCenter" *ngFor="let capability of capabilities">
+              <td>{{ capability.leadName }}</td>
+              <td>{{ capability.message }}</td>
+              <img src="{{ capability.photo }}" style="width: 150px;">
+          </tr>
       </tbody>
-    </table>
+      </table>
   </article>
 </section>
-
 <section>
-  <article>
-    <table id="responsibility" style="width:100%">
+  <article id="articleSpacing">
+    <table>
       <thead>
       <tr>
-        <th>BandID</th>
-        <th>Responsibility</th>
-        <th>Description</th>
-      </tr>
+        <th style="width: 10%;"><h1 style="float: left;">Roles</h1></th>
+        <th>
+        <input type="text" placeholder="Search Role">
+        <input type="button" value="Search">
+        </th>
+        <th><input type="button" value="+"></th>
+        </tr>
       </thead>
-      <tbody>
-      </tbody>
+      </table>
+      <table>
+      <thead>
+            <br>
+            <tr>
+            <td style="width: 40%">
+          <section id="roleSectionWidth">
+              <article>
+                <table>
+                  <thead>
+                  <tr>
+                    <th id="tableCenter">List of Bands:</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="myRow" id="pop-over" *ngFor="let role of roles">
+                      <td id="tableCenter">{{ role.name }}</td>
+                  </tbody>
+                </table>
+              </article>
+            </section>
+
+              </td>
+
+              <td style="width: 60%">
+
+              <section style="float: right;" id="roleSectionWidth">
+                  <article>
+                    <table>
+                    <thead>
+                    <tr>
+                    <th>Compare Roles:</th>
+                    <th id="tableCenter">List of Roles:</th>
+                    </tr>
+                    </thead>
+                      <tbody>
+                    <tr class="myRow" id="tableCenter" *ngFor="let role of roles">
+                      <input type="checkbox">
+                      <td>{{ role.name }}</td>
+                      </tbody>
+                    </table>
+                  </article>
+                </section>
+
+                </td>
+                </tr>
+      </thead>
     </table>
+    <br>
+    <div id="tableCenter"> 
+    <input type="button" value="Compare roles"> 
+    </div>
   </article>
 </section>

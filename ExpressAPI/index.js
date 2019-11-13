@@ -6,14 +6,14 @@ const url = require('url');
 app.use(express.json());
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const secretKey = process.env.JWT_Secret
-var options = { cookies: true }
+const secretKey = process.env.JWT_Secret;
+var options = { cookies: true };
 var jwtGen = require('jsonwebtoken', options);
 var jwt = require('express-jwt');
 
 app.use(jwt({ secret: process.env.JWT_Secret}).unless({path: ['/login', '/SecureGenerateUser']}));
 
-app.use(express.json())
+app.use(express.json());
 
 const db = require('./db.js');
 
@@ -24,16 +24,16 @@ app.get('/roles', function (req, res) {
 });
 
 app.get('/capabilities', function(req, res) {
-    db.getCapabilities(function(rows) {
+    db.getCapabilities(req.query.capabilityID, function(rows) {
         res.send(rows)
     })
-})
+});
 
 app.get('/jobFamilies', function(req, res) {
     db.getJobFamilies(function(rows) {
         res.send(rows)
     })
-})
+});
 
 app.listen(8002, function () {
     console.log('Express started on port 8002')
@@ -112,7 +112,7 @@ app.post('/login', function (req,res) {
 
                     res.send({Status:200, User:{
                         "username": retRows.username,
-                        "id": retRows.id}, Auth: accessToken})
+                        "id": retRows.id}, Auth: accessToken});
 
                     //clear failed attempts as user has successfully logged in
                     if(retRows.failedAttempts != 0){
@@ -186,14 +186,14 @@ app.get('/InvalidateUserToken', function(req, res){
         db.clearUserToken(header);
         res.sendStatus(200)
     }
-})
+});
 
 app.get('/IsUserValid', function(req,res){
     //blank endpoint for uservalidation
     //jwt will auto return 401 if invalid 
     //or if we reach here, we send 200 
     res.status(200).send({Status:200})
-})
+});
 
 
 

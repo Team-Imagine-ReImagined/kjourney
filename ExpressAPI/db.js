@@ -99,10 +99,10 @@ exports.getUser = function(Username, callback){
         "FROM authData WHERE username = '"+Username+"' LIMIT 1;",
         function (err, rows) {
             if (err) {
-                logger.error("getUser failed with error: " + err)
+                logger.error("getUser failed with error: " + err);
                 throw err;
             }
-            logger.debug("getUser for "+Username)
+            logger.debug("getUser for "+Username);
             callback(rows);
     })
 };
@@ -189,30 +189,30 @@ exports.clearUserToken = function(tokenToClear){
 
 
 
-exports.getCapabilities = function(callback) {
+exports.getCapabilities = function(ID, callback) {
     db.query(
-        "SELECT capability.ID, capability.name, capLead.name AS leadName, capLead.photo, capLead.message FROM capability INNER JOIN capLead ON capability.leadID=capLead.ID;",
+        "SELECT capability.ID AS ID, capability.name AS name, capability.description AS capDescription, capLead.name AS leadName, capLead.photo AS photo, capLead.message AS message FROM capability INNER JOIN capLead ON capability.leadID=capLead.ID WHERE capability.ID=?", [ID],
         function(err, rows) {
             if (err) {
-                logger.error("getCapabilities failed with error: " + err)
+                logger.error("getCapabilities failed with error: " + err);
                 throw err;
             }
-            logger.debug("getCapabilities succeeded.")
+            logger.debug("getCapabilities succeeded.");
             callback(rows);
         }
     )
-}
+};
 
 exports.getJobFamilies = function(callback) {
     db.query(
         "SELECT jobFam.ID AS famID, jobFam.name AS famName, capability.name as capName, capability.ID AS capID FROM jobFam INNER JOIN capability ON jobFam.capID=capability.ID;",
         function(err, rows) {
             if (err) {
-                logger.error("getJobFamilies failed with error: " + err)
+                logger.error("getJobFamilies failed with error: " + err);
                 throw err;
             }
-            logger.debug("getJobFamilies succeeded.")
+            logger.debug("getJobFamilies succeeded.");
             callback(rows);
         }
     )
-}
+};

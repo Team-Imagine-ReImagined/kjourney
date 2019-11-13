@@ -43,7 +43,7 @@ header {
   background-color:transparent;
   padding: 30px;
   text-align: left;
-  font-size: 35px;
+  font-size: 15px;
   color: black;
 }
 
@@ -58,7 +58,6 @@ header {
 
 ::placeholder{
   color: lightgray;
-  font-size: 24pt;
 }
 
 nav {
@@ -78,7 +77,7 @@ nav ul {
 }
 
 article {
-  border: 2px solid black;
+  border: 2px solid #283583;
   float: right;
   padding: 25px;
   width: 100%;
@@ -86,3 +85,59 @@ article {
   border-radius: 15px;
 }
 
+th {
+  text-align: center;
+  color: #61a83f;
+}
+
+td {
+  color: #283583;
+}
+
+h1 {
+  color: #61a83f;
+  text-align: center;
+}
+
+.search-bar input{
+  height: 10%;
+  width: 50%;
+  font-size: 100%;
+  padding: 1%;
+  border-radius: 37.5px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: #283583;
+  }
+
+  h2 {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  #capSection
+  {
+    width: 100%;
+  }
+
+  table
+  {
+    width: 100%;
+  }
+
+  #capLeadSection{
+    float: right; 
+    width: 48%;
+  }
+
+  #tableCenter{
+    text-align: center;
+  }
+
+  #articleSpacing{
+    margin-top: 2%;
+  }
+
+  #roleSectionWidth{
+    width: 95%;
+  }

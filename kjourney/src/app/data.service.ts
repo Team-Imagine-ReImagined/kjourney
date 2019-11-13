@@ -30,8 +30,8 @@ export class DataService {
   public getResponsibilities(bandID): Observable<Responsibility[]> {
     return this.http.get<Responsibility[]>('api/responsibilities/' + bandID);
   }
-  public getCapabilities(): Observable<Capability[]> {
-    return this.http.get<Capability[]>('api/capabilities');
+  public getCapabilities(ID): Observable<Capability[]> {
+    return this.http.get<Capability[]>('api/capabilities/?capabilityID=' + ID);
   }
 
   public getJobFamilies(): Observable<JobFamily[]> {
