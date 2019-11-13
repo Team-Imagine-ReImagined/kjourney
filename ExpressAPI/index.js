@@ -17,30 +17,24 @@ app.use(express.json())
 
 const db = require('./db.js');
 
-app.get('/roles', function (req, res) {
-    db.getRoles(function (rows) {
-        res.send(rows)
-    })
-});
-
 app.listen(8002, function () {
     console.log('Express started on port 8002')
 });
 
-app.get('/training/:bandId', function (req, res) {
-    db.getTrainingPerBand(req.params.bandId, function(rows) {
+app.get('/training', function (req, res) {
+    db.getTrainingPerBand(req.query.bandID, function(rows) {
         res.send(rows);
     })
 });
 
-app.get('/competencies/:bandID', function(req, res) {
-    db.getCompetencies(req.params.bandID, function(rows) {
+app.get('/competencies', function(req, res) {
+    db.getCompetencies(req.query.bandID, function(rows) {
         res.send(rows);
     })
 });
 
-app.get('/responsibilities/:bandID', function(req, res) {
-    db.getResponsibilities(req.params.bandID, function(rows) {
+app.get('/responsibilities', function(req, res) {
+    db.getResponsibilities(req.query.bandID, function(rows) {
         res.send(rows);
     })
 });
@@ -174,15 +168,29 @@ app.get('/InvalidateUserToken', function(req, res){
         db.clearUserToken(header);
         res.sendStatus(200)
     }
-})
+});
 
 app.get('/IsUserValid', function(req,res){
     //blank endpoint for uservalidation
     //jwt will auto return 401 if invalid 
     //or if we reach here, we send 200 
     res.status(200).send({Status:200})
-})
+});
 
+app.get('/roles', function(req, res) {
+    if (req.query.bandID > 0){ // If a bandID has been supplied, get all roles for that band
+        db.getBandRoles(req.query.bandID, function(rows) {
+            res.send(rows);
+        })
+    } else { // Otherwise, get all roles
+        db.getRoles(function (rows) {
+            res.send(rows)
+        })
+    }
+});
 
-
-
+app.get('/bands/:bandID', function(req, res) {
+    db.getBandName(req.params.bandID, function(rows) {
+        res.send(rows);
+    })
+});

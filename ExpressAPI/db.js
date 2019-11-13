@@ -51,7 +51,9 @@ exports.getTrainingDetails = function (ID, callback) {
 
 exports.getTrainingPerBand = function (bandID, callback) {
     db.query(
-        "SELECT band_Training.bandID, training.name, training.trainingType FROM band_Training INNER JOIN training ON band_Training.trainingID = training.ID WHERE band_Training.bandID=?",[bandID],
+        "SELECT band_Training.bandID, training.name, training.trainingType, training.trainingLink " +
+        "FROM band_Training INNER JOIN training ON band_Training.trainingID = training.ID " +
+        "WHERE band_Training.bandID=?",[bandID],
     function (err, rows) {
             if (err) {
                 logger.error("getTrainingPerBand failed with error: " + err);
@@ -187,4 +189,34 @@ exports.clearUserToken = function(tokenToClear){
     });
 };
 
+exports.getBandRoles = function(bandID, callback) {
+    db.query(
+        "SELECT jobRole.bandID, jobRole.ID as roleID, jobRole.name as roleName, jobFam.name as jobFamilyName " +
+        "FROM jobRole JOIN jobFam ON jobRole.jobFamID = jobFam.ID " +
+        "WHERE bandID = " + bandID,
+        function (err, rows) {
+            if (err) {
+                logger.error("getBandRoles failed with error: " + err);
+                throw err;
+            }
+            logger.debug("getBandRoles succeeded.");
+            callback(rows);
+        }
+    )
+}
 
+exports.getBandName = function(bandID, callback) {
+    db.query(
+        "SELECT id, name, level " +
+        "FROM band " +
+        "WHERE id = " + bandID,
+        function (err, rows) {
+            if (err) {
+                logger.error("getBandName failed with error: " + err);
+                throw err;
+            }
+            logger.debug("getBandName succeeded.");
+            callback(rows);
+        }
+    )
+}

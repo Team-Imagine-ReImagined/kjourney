@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import { BandsComponent } from './bands/bands.component';
-import { BandComponent } from './band/band.component';
 import { AuthGuard } from './_helpers/auth.guard';
 
 
@@ -22,13 +21,9 @@ const routes: Routes = [
   {
     path: 'bands', component: BandsComponent, canActivate: [AuthGuard]
   },
-  
+
   {
-    path: 'band', component: BandComponent, canActivate: [AuthGuard]
-  },{
-
     path: '**', redirectTo: ''
-
   }
 ];
 
