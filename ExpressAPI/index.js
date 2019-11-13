@@ -23,8 +23,8 @@ app.get('/roles', function (req, res) {
     })
 });
 
-app.get('/capabilities', function(req, res) {
-    db.getCapabilities(function(rows) {
+app.get('/capabilities/:ID', function(req, res) {
+    db.getCapabilities(req.params.ID, function(rows) {
         res.send(rows)
     })
 })

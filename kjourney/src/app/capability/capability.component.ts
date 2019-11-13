@@ -22,7 +22,7 @@ export class CapabilityComponent implements OnInit {
     this.data.getRoles().subscribe((r => {
       this.roles = r;
     }));
-    this.data.getCapabilities().subscribe((r => {
+    this.data.getCapabilities(1).subscribe((r => {
       this.capabilities = r;
     }));
   }

@@ -189,9 +189,9 @@ exports.clearUserToken = function(tokenToClear){
 
 
 
-exports.getCapabilities = function(callback) {
+exports.getCapabilities = function(ID, callback) {
     db.query(
-        "SELECT capability.ID, capability.name, capLead.name AS leadName, capLead.photo, capLead.message FROM capability INNER JOIN capLead ON capability.leadID=capLead.ID;",
+        "SELECT capability.ID AS ID, capability.name AS name, capability.description AS capDescription, capLead.name AS leadName, capLead.photo AS photo, capLead.message AS message FROM capability INNER JOIN capLead ON capability.leadID=capLead.ID WHERE capability.ID=?", [ID],
         function(err, rows) {
             if (err) {
                 logger.error("getCapabilities failed with error: " + err)
