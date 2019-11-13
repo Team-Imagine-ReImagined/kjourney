@@ -6,8 +6,8 @@ const url = require('url');
 app.use(express.json());
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const secretKey = process.env.JWT_Secret
-var options = { cookies: true }
+const secretKey = process.env.JWT_Secret;
+var options = { cookies: true };
 var jwtGen = require('jsonwebtoken', options);
 var jwt = require('express-jwt');
 
@@ -16,7 +16,7 @@ app.use(jwt({ secret: process.env.JWT_Secret }).unless({
         '/capabilities', '/jobFamilies', '/jobRoles', '/training']
 }));
 
-app.use(express.json())
+app.use(express.json());
 
 const db = require('./db.js');
 
@@ -227,7 +227,7 @@ function signInNewlyRegisteredUser(retID, data, hash, res) {
                     expiresIn: tokenValidDurationSeconds
                 });
                 db.storeUserToken(retRows.id, accessToken, (Date.now() + (tokenValidDurationSeconds * 1000)));
-                //return 
+                //return
                 res.send({
                     Status: 200, User: {
                         "username": retRows.username,
@@ -300,9 +300,33 @@ app.get('/roles', function (req, res) {
     }
 });
 
-app.get('/roles', function (req, res) {
-    if (req.query.bandID > 0) { // If a bandID has been supplied, get all roles for that band
+app.get('/roles', function(req, res) {
+    if (!req.query.bandID){
+        res.json ({
+            message: "Band ID required"
+        });
+    } else {
         db.getBandRoles(req.query.bandID, function (rows) {
+            res.send(rows);
+        })
+    }
+});
+
+app.get('/band', function(req, res) {
+    if (!req.params.bandID){
+        res.json ({
+            message: "Band ID required"
+        });
+    } else {
+        db.getBandName(req.params.bandID, function (rows) {
+            res.send(rows);
+        })
+    }
+});
+
+app.get('/roles', function(req, res) {
+    if (req.params.bandID > 0){ // If a bandID has been supplied, get all roles for that band
+        db.getBandRoles(req.params.bandID, function(rows) {
             res.send(rows);
         })
     } else { // Otherwise, get all roles

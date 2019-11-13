@@ -27,7 +27,6 @@ export class BandsComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
-
     this.bandID = +this.route.snapshot.queryParamMap.get('bandID');
 
     this.data.getTrainingPerBand(this.bandID).subscribe((a => {
@@ -41,7 +40,6 @@ export class BandsComponent implements OnInit, OnDestroy {
     this.data.getResponsibilities(this.bandID).subscribe((r => {
       this.responsibilities = r;
     }));
-
     this.data.getBandRoles(this.bandID).subscribe((br => {
       this.bandRoles = br;
     }));
@@ -51,8 +49,9 @@ export class BandsComponent implements OnInit, OnDestroy {
     }))
 
   }
-
   ngOnDestroy(): void {
+    if (this.sub) {
     this.sub.unsubscribe();
+    }
   }
 }

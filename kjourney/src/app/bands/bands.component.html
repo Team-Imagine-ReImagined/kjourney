@@ -6,24 +6,36 @@
   <section id="leftSection">
 
     <article class="roleRow">
-      <table id="careerTable" style="width:100%; overflow: auto;">
+      <table id="careerTable">
         <thead>
         <tr>
-          <th>Job Families</th>
-          <th style="float: right;">Roles</th>
+          <th class="table">Job Families and Roles</th>
+
+
         </tr>
         </thead>
-        <tbody>
-        <td>
+        <tbody id="tbody1">
+        <td >
           <tr id="pop-over" *ngFor="let bandRole of bandRoles">
-            <td>{{ bandRole.jobFamilyName }}</td>
           </tr>
         </td>
-        <td  style="float: right;">
-          <tr id="pop-over" *ngFor="let bandRole of bandRoles">
-            <td>{{ bandRole.roleName }}</td>
-          </tr>
-        </td>
+
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false"
+                             id="panel" *ngFor="let bandRole of bandRoles">
+          <mat-expansion-panel-header>
+            <td class="jobFamilyName">{{ bandRole.jobFamilyName }}</td><td class="filler1"></td><td></td><td></td><td class="roleName">{{ bandRole.roleName }}</td>
+
+          </mat-expansion-panel-header>
+
+          <mat-panel-description id="jobDescription">
+            <p class="summary">{{bandRole.summary}} </p><br>
+            <td class="filler2"></td><td></td><td></td>
+            <a class="link" href= "{{ bandRole.link }}" target="_blank">Link to more info</a>
+
+          </mat-panel-description>
+
+        </mat-expansion-panel>
         </tbody>
       </table>
     </article>
@@ -50,39 +62,39 @@
   <!-- TRAINING TABLE -->
   <section id="rightSection">
     <article class="roleRow">
-    <table id="rolesTable" style="width:100%">
-      <thead>
-      <tr>
-        <th style="padding: 10px;">Training Name</th>
-        <th style="text-align: right">Training Type</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr class="myRow" id="pop-over" *ngFor="let trainingPerBand of trainingPerBands">
-        <td style="padding: 10px;"><a href='{{ trainingPerBand.trainingLink }}'>{{ trainingPerBand.name }}</a></td>
-        <td style="text-align: right; padding: 10px;">{{ trainingPerBand.trainingType}}</td>
-      </tr>
-      </tbody>
-    </table>
-  </article>
+      <table id="rolesTable" style="width:100%">
+        <thead>
+        <tr>
+          <th style="padding: 10px;">Training Name</th>
+          <th style="text-align: right">Training Type</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="myRow" id="pop-over" *ngFor="let trainingPerBand of trainingPerBands">
+          <td style="padding: 10px;"><a href='{{ trainingPerBand.trainingLink }}'>{{ trainingPerBand.name }}</a></td>
+          <td style="text-align: right; padding: 10px;">{{ trainingPerBand.trainingType}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </article>
 
-  <article class="roleRow">
-    <table id="rolesTable" style="width:100%">
-      <thead>
-      <tr>
-        <th style="padding: 10px;">Responsibilities</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr class="myRow" id="pop-over" *ngFor="let responsibility of responsibilities">
-        <ul>
-          <li><td style="padding: 10px;">{{ responsibility.respDesc }}</td></li>
-        </ul>
-      </tr>
-      </tbody>
-    </table>
-  </article>
-</section>
+    <article class="roleRow">
+      <table id="rolesTable" style="width:100%">
+        <thead>
+        <tr>
+          <th style="padding: 10px;">Responsibilities</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="myRow" id="pop-over" *ngFor="let responsibility of responsibilities">
+          <ul>
+            <li><td style="padding: 10px;">{{ responsibility.respDesc }}</td></li>
+          </ul>
+        </tr>
+        </tbody>
+      </table>
+    </article>
+  </section>
 
 
 

@@ -20,20 +20,87 @@ h1
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
+  /* Change color on hover */
+  .topnav a:hover {
+	color:#009fe3;
+	text-decoration: underline;
+  }
+
 * {
   box-sizing: border-box;
 }
-
 th {
   color: #61a83f
 }
-
-header {
-  background-color:transparent;
-  padding: 30px;
-  font-size: 18px;
-  color: #283583;
+mat-expansion-panel-header {
+	text-align:left;
 }
+.filler1 {
+	width: 160px;
+}
+
+.filler2{
+	width: 40px;
+}
+
+.table {
+	text-align: center;
+}
+
+.jobFamilyName {
+	width: 140px;
+
+}
+
+.summary {
+	width: 280px;
+	font-size: 10pt;
+}
+
+.link {
+	font-size: 10pt;
+}
+
+  header {
+    background-color:transparent;
+    padding: 30px;
+    font-size: 18px;
+    color: #283583;
+  }
+
+  jobDescription {
+  float: bottom;
+  }
+
+  .search-bar input{
+  height: 75px;
+  width: 900px;
+  padding: 24px;
+  font-size: 24pt;
+  border-radius: 37.5px;
+  border-color: black;
+  }
+
+  ::placeholder{
+	color: lightgray;
+	font-size: 24pt;
+  }
+
+  nav {
+	border-radius: 15px;
+	float: left;
+	width: 10%;
+	background: #283683;
+	padding: 20px;
+	border: 2px solid black;
+	color: white;
+  }
+
+  nav ul {
+	overflow: scroll;
+	list-style-type: none;
+	padding: 0;
+  }
 
 article {
   border: 2px solid #283583;
@@ -66,4 +133,8 @@ article {
   anchor: left;
   padding-top: 70px;
   text-align: center;
+}
+
+#tbody1{
+  float: right;
 }

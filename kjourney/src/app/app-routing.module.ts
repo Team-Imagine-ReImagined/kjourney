@@ -30,7 +30,6 @@ const routes: Routes = [
   {
     path: 'registerUser', component: RegisterUserComponent
   },
-
   {
     path: '**', redirectTo: ''
   }
