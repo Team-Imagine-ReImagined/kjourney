@@ -1,5 +1,10 @@
 <router-outlet></router-outlet>
-<section>
+<br>
+<br>
+<br>
+<br>
+<h1 style= "text-align: center; margin-top: 45px;">Test</h1>
+<section style="float: left; width: 50%;">
   <article>
     <table id="capabilityDescription" style="width:100%">
       <thead>
@@ -8,23 +13,29 @@
       </tr>
       </thead>
       <tbody>
-      <tr class="myRow" id="pop-over" *ngFor="let description of descriptions">
+      <tr class="myRow" id="pop-over" *ngFor="let capability of capabilities">
+        <td>{{ capability.desc }}</td>
       </tbody>
     </table>
   </article>
 </section>
 
-<section>
+<section style="float: right; width: 50%;">
   <article>
+    <h1 style="text-align: center;">Capability Lead</h1>
     <table id="band" style="width:100%">
       <thead>
       <tr>
-        <th>BandID</th>
-        <th>Title</th>
+        <th>Name</th>
         <th>Description</th>
+      </tr>
+      <tr>
+        test
       </tr>
       </thead>
       <tbody>
+          <tr class="myRow" id="pop-over" *ngFor="let capability of capabilities">
+              <td></td>
       </tbody>
     </table>
   </article>
