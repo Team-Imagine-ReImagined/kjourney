@@ -14,7 +14,7 @@
 
       <div class="full" style="width:100%">
         <div class="left" style="width:50%; float:left;">
-          <div class="navbar" style="padding-top:3%">
+          <div *ngIf="this.auth.currentUserValue" class="navbar" style="padding-top:3%">
             <a routerLink="home" routerLinkActive="active">Home</a>
             <a routerLink="login">Login</a>
             <a href="" (click)="logout()">Logout</a>
@@ -35,7 +35,7 @@
                 <a href="#">Apprentice</a>
               </div>
             </div>
-            <div class="dropdown">
+            <div *ngIf="this.auth.currentUserValue" class="dropdown">
               <button class="dropbtn">Capabilities & Job Family
       <i class="fa fa-caret-down"></i>
               </button>
