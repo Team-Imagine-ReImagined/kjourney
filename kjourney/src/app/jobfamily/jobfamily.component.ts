@@ -1,13 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ComponentFactoryResolver,
+  Injectable,
+  Inject,
+  ReflectiveInjector,
+  Component, 
+  OnInit 
+} from '@angular/core'
+import { DataService } from '../data.service';
+import { CapabilityById } from '../../src/models';
+import { JobFamByCapId } from '../../src/models';
+export class DynamicComponent { }
 
 @Component({
   selector: 'app-jobfamily',
-  templateUrl: './jobfamily.component.html',
-  styleUrls: ['./jobfamily.component.css']
+  styleUrls: ['./jobfamily.component.css'],
+  template: `<h2>I'm dynamically attached</h2>`
 })
 export class JobfamilyComponent implements OnInit {
 
-  constructor() { }
+  public data: DataService;
+
+  constructor(data:DataService,ID) { 
+    this.data = data;
+  }
 
   ngOnInit() {
   }

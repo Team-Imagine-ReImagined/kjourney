@@ -186,5 +186,30 @@ exports.clearUserToken = function(tokenToClear){
         }
     });
 };
-
-
+exports.getCapabilityById = function(ID){
+    db.query('SELECT ID, name FROM capability WHERE ID =?'+[ID]+''),
+    function(error){
+        if(error){
+            logger.error(error);
+            throw error;
+        }
+    }
+}
+exports.getCapability = function(ID){
+    db.query('SELECT ID, name FROM capability'),
+    function(error){
+        if(error){
+            logger.error(error);
+            throw error;
+        }
+    }
+}
+exports.getJobFamByCapId = function(capID){
+    db.query('SELECT ID, name FROM capability WHERE capID =?'+[capID]+''),
+    function(error){
+        if(error){
+            logger.error(error);
+            throw error;
+        }
+    }
+}

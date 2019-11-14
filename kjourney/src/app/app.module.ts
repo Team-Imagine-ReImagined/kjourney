@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
-import { HttpClientModule } from '@angular/common/http'
+import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,14 +16,12 @@ import { BandsComponent } from './bands/bands.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './_helpers/basic-auth.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
-import { HomeComponent } from './home/home.component';
 import { CapabilityComponent } from './capability/capability.component';
 import { JobfamilyComponent } from './jobfamily/jobfamily.component';
 import { RolesComponent } from './roles/roles.component';
 import { NavbarcapComponent } from './navbarcap/navbarcap.component';
 import { NavbarjobfamilyComponent } from './navbarjobfamily/navbarjobfamily.component';
-
-
+import { MessageService } from 'AuxServices/message.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,11 +30,9 @@ import { NavbarjobfamilyComponent } from './navbarjobfamily/navbarjobfamily.comp
     GraphViewComponent,
     LoginComponent,
     BandsComponent,
-    HomeComponent,
     CapabilityComponent,
     JobfamilyComponent,
-    RolesComponent
-    NavbarcapComponent,
+    RolesComponent,
     NavbarjobfamilyComponent
   ],
   imports: [
@@ -45,6 +41,7 @@ import { NavbarjobfamilyComponent } from './navbarjobfamily/navbarjobfamily.comp
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    MessageService,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

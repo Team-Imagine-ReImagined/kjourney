@@ -1,4 +1,5 @@
 require("dotenv").config();
+export * from './message.service';
 
 const express = require('express');
 const app = express();
@@ -184,5 +185,19 @@ app.get('/IsUserValid', function(req,res){
 })
 
 
+app.get('/getCapabilityById:/ID',function(req,res){
+    db.getCapabilityById(req.params.ID, function(rows) {
+        res.send(rows);
+});
+
+app.get('/getCapabilityById',function(req,res){
+    db.getCapabilityById(function(rows) {
+        res.send(rows);
+});
+
+app.get('/getJobFamByCapId:/ID',function(req,res){
+    db.getJobFamByCapId(req.params.ID, function(rows) {
+        res.send(rows);
+});
 
 
