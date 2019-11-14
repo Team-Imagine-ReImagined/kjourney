@@ -7,7 +7,8 @@ CREATE TABLE training (
     ID int PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     description VARCHAR(200) NOT NULL,
-    trainingType VARCHAR(100)
+    trainingType VARCHAR(200),
+    trainingLink varchar(100) NOT NULL
 );
 
 DROP TABLE IF EXISTS competency;
@@ -71,7 +72,7 @@ CREATE TABLE jobRole (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     summary VARCHAR(200) NOT NULL,
-    link VARCHAR(25) NOT NULL,
+    link VARCHAR(100) NOT NULL,
     jobFamID INT NOT NULL,
     bandID INT NOT NULL,
     FOREIGN KEY (jobFamID) REFERENCES jobFam(ID),
@@ -83,7 +84,6 @@ CREATE TABLE comp_Band (
     compID int NOT NULL,
     bandID int NOT NULL,
     compDesc varchar(200) NOT NULL,
-    PRIMARY KEY(compID, bandID),
 
     FOREIGN KEY (compID) REFERENCES competency(ID),
     FOREIGN KEY (bandID) REFERENCES band(ID)
