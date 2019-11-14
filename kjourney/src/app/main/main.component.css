@@ -1,88 +1,87 @@
 * {
-	box-sizing: border-box;
-  }
+  box-sizing: border-box;
+}
 
-  body {
-	background-image: linear-gradient(to bottom right, #61ab3f, white);
-	background-attachment: fixed;
-	font-family: sans-serif;
-  }
+body {
+  background-image: linear-gradient(to bottom right, #61ab3f, white);
+  background-attachment: fixed;
+  font-family: sans-serif;
+}
 
-  /* Style the header */
-  .header {
-	background-color: #f1f1f1;
-	padding: 20px;
-	text-align: center;
-  }
+/* Style the header */
+.header {
+  background-color: #f1f1f1;
+  padding: 20px;
+  text-align: center;
+}
 
-  /* Style the top navigation bar */
-  .topnav {
-	overflow: hidden;
-	background-color: #283683;
-	border: 2px solid black;
-	border-radius: 15px;
-  }
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #283683;
+  border: 2px solid black;
+  border-radius: 15px;
+}
 
-  /* Style the topnav links */
-  .topnav a {
-	float: left;
-	display: block;
-	color: #f2f2f2;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-  }
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
 
-  /* Change color on hover */
-  .topnav a:hover {
-	color:#009fe3;
-	text-decoration: underline;
-  }
+/* Change color on hover */
+.topnav a:hover {
+  color:#009fe3;
+  text-decoration: underline;
+}
 
-  header {
-	background-color:transparent;
-	padding: 30px;
-	text-align: left;
-	font-size: 35px;
-	color: black;
-  }
+header {
+  background-color:transparent;
+  padding: 30px;
+  text-align: left;
+  font-size: 35px;
+  color: black;
+}
 
-  .search-bar input{
+.search-bar input{
   height: 75px;
   width: 900px;
   padding: 24px;
   font-size: 24pt;
   border-radius: 37.5px;
   border-color: black;
-  }
+}
 
-  ::placeholder{
-	color: lightgray;
-	font-size: 24pt;
-  }
+::placeholder{
+  color: lightgray;
+  font-size: 24pt;
+}
 
-  nav {
-	border-radius: 15px;
-	float: left;
-	width: 10%;
-	background: #283683;
-	padding: 20px;
-	border: 2px solid black;
-	color: white;
-  }
+nav {
+  border-radius: 15px;
+  float: left;
+  width: 10%;
+  background: #283683;
+  padding: 20px;
+  border: 2px solid black;
+  color: white;
+}
 
-  nav ul {
-	overflow: scroll;
-	list-style-type: none;
-	padding: 0;
-  }
+nav ul {
+  overflow: scroll;
+  list-style-type: none;
+  padding: 0;
+}
 
-  article {
-	border: 2px solid black;
-	float: right;
-	padding: 25px;
-	width: 100%;
-	background-color: white;
-	border-radius: 15px;
-  }
-
+article {
+  border: 2px solid black;
+  float: right;
+  padding: 25px;
+  width: 100%;
+  background-color: white;
+  border-radius: 15px;
+}

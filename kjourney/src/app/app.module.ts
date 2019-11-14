@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 
-import { BandComponent } from './band/band.component';
 import { GraphViewComponent } from './graphView/GraphView.component';
 
 import { BandsComponent } from './bands/bands.component';
@@ -27,7 +26,6 @@ import { NavbarjobfamilyComponent } from './navbarjobfamily/navbarjobfamily.comp
   declarations: [
     AppComponent,
     MainComponent,
-    BandComponent,
     GraphViewComponent,
     LoginComponent,
     BandsComponent,
@@ -48,7 +46,7 @@ import { NavbarjobfamilyComponent } from './navbarjobfamily/navbarjobfamily.comp
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true
-  },{
+  }, {
     provide: HTTP_INTERCEPTORS,
     useClass: ErrorInterceptor,
     multi: true
