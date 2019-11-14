@@ -23,16 +23,15 @@
       <i class="fa fa-caret-down"></i>
               </button>
               <div class="dropdown-content">
-                <a routerLink="bands">All</a>
-                <a href="#">Executive</a>
-                <a href="#">Leadership Community</a>
-                <a href="#">Principle</a>
-                <a href="#">Manager</a>
-                <a href="#">Consultant</a>
-                <a href="#">Senior Associate</a>
-                <a href="#">Associate</a>
-                <a href="#">Trainee</a>
-                <a href="#">Apprentice</a>
+                  <a href="bands?bandID=1">Executive</a>
+                  <a href="bands?bandID=2">Leadership Community</a>
+                  <a href="bands?bandID=3">Principle</a>
+                  <a href="bands?bandID=4">Manager</a>
+                  <a href="bands?bandID=5">Consultant</a>
+                  <a href="bands?bandID=6">Senior Associate</a>
+                  <a href="bands?bandID=7">Associate</a>
+                  <a href="bands?bandID=8">Trainee</a>
+                  <a href="bands?bandID=9">Apprentice</a>
               </div>
             </div>
             <div *ngIf="this.auth.currentUserValue" class="dropdown">
@@ -42,6 +41,20 @@
               <div class="CapabilitiesDrop" *ngFor="let capability of capabilities">
                   <a routerLink="{{ capability.name }}"></a>
                 <a class="CapabilityName" href={{ capability.name }}></a>
+                <ul>
+
+                    <li class="dropdown-submenu">
+                        <a class="test" tabindex="-1" href="#">New dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
+                          <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
+                          <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
+                        </ul>
+                      </li>
+
+
+
+                </ul>
               </div>
                  
                
