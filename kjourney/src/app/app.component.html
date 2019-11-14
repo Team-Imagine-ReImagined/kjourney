@@ -39,29 +39,12 @@
               <button class="dropbtn">Capabilities & Job Family
       <i class="fa fa-caret-down"></i>
               </button>
-              <ul>
-                <div class="dropdown-content">
-                  <li style="list-style:none;">
-                    <a href="#">Sales & Marketing</a>
-                  </li>
-                  <li class="dropdown">
-                  <li class="dropdown-submenu">
-                    <ul class="dropdown-content">
-                      <li style="list-style:none;">
-                        <a href="#">Business Development</a>
-                      </li>
-                      <li style="list-style:none;">
-                        <a href="#">Account Management</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <a href="#">Technical</a>
-                  <a href="#">Consulting</a>
-                  <a href="#">Experience Design</a>
-                  <a href="#">Management</a>
-                  <a href="#">Central Services Teams</a>
-                </div>
-              </ul>
+              <div class="CapabilitiesDrop" *ngFor="let capability of capabilities">
+                  <a routerLink="{{ capability.name }}"></a>
+                <a class="CapabilityName" href={{ capability.name }}></a>
+              </div>
+                 
+               
             </div>
           </div>
         </div>

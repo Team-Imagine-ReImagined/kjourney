@@ -19,9 +19,6 @@ export class CapabilityComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.data.getRoles().subscribe((r => {
-      this.roles = r;
-    }));
     this.data.getCapabilities().subscribe((r => {
       this.capabilities = r;
     }));
