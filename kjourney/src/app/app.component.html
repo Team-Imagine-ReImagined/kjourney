@@ -11,7 +11,7 @@
       <div style="text-align: center;">
         <img src="assets/newLogo.png" alt="kJourney Logo" display="inline-block" width="25%">
       </div>
-
+      <div>
       <div class="full" style="width:100%">
         <div class="left" style="width:50%; float:left;">
           <div class="navbar" style="padding-top:3%">
@@ -37,41 +37,30 @@
             </div>
             <div class="dropdown">
               <button class="dropbtn">Capabilities & Job Family
-      <i class="fa fa-caret-down"></i>
+              <i class="fa fa-caret-down"></i>
+              <ul *ngFor="let CapabilityFind of Capability"></ul>
+              <a href="#">{{ Capability.ID }}</a>
               </button>
-              <ul>
-                <div class="dropdown-content">
-                  <li style="list-style:none;">
-                    <a href="#">Sales & Marketing</a>
-                  </li>
-                  <li class="dropdown">
-                  <li class="dropdown-submenu">
-                    <ul class="dropdown-content">
-                      <li style="list-style:none;">
-                        <a href="#">Business Development</a>
-                      </li>
-                      <li style="list-style:none;">
-                        <a href="#">Account Management</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <a href="#">Technical</a>
-                  <a href="#">Consulting</a>
-                  <a href="#">Experience Design</a>
-                  <a href="#">Management</a>
-                  <a href="#">Central Services Teams</a>
-                </div>
-              </ul>
+              <app-navbarcap>
+
+              </app-navbarcap>
+              </div>
+              
             </div>
           </div>
         </div>
         <div class="right" style="width:50%; float:right;">
+          
           <div class="search-bar" style="text-align: right;" display="inline-block;">
             <input class=”text” type="text" placeholder="Filter..."/>
             <style></style>
           </div>
         </div>
-
+        
+            
+                
+             
+            
         <router-outlet></router-outlet>
       </div>
     </div>

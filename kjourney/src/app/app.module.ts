@@ -21,7 +21,6 @@ import { JobfamilyComponent } from './jobfamily/jobfamily.component';
 import { RolesComponent } from './roles/roles.component';
 import { NavbarcapComponent } from './navbarcap/navbarcap.component';
 import { NavbarjobfamilyComponent } from './navbarjobfamily/navbarjobfamily.component';
-import { MessageService } from 'AuxServices/message.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,15 +32,15 @@ import { MessageService } from 'AuxServices/message.service';
     CapabilityComponent,
     JobfamilyComponent,
     RolesComponent,
-    NavbarjobfamilyComponent
+    NavbarjobfamilyComponent,
+    NavbarcapComponent
   ],
   imports: [
     NgbModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule,
-    MessageService,
+    HttpClientModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

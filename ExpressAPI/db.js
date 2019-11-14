@@ -195,15 +195,18 @@ exports.getCapabilityById = function(ID){
         }
     }
 }
-exports.getCapability = function(ID){
-    db.query('SELECT ID, name FROM capability'),
-    function(error){
-        if(error){
-            logger.error(error);
-            throw error;
+exports.getCapability = function(){
+    db.query('SELECT ID.capability as ID, name.capability FROM capability'),
+    function(err, rows){
+        if(err){
+            logger.error("getCapability failed with error: " + err);
+            throw err;
+        }
+            logger.debug("getCapability succeeded")
+            callback(rows);
         }
     }
-}
+
 exports.getJobFamByCapId = function(capID){
     db.query('SELECT ID, name FROM capability WHERE capID =?'+[capID]+''),
     function(error){

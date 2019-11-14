@@ -1,4 +1,4 @@
-export class CapabilityFind {
+export class Capability {
     ID: string
     name: string
 }

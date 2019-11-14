@@ -1,8 +1,8 @@
 import { Component, OnInit,ComponentFactoryResolver } from '@angular/core';
-import { MessageService } from '../../../AuxServices';
-import { CapabilityById } from '../../src/models';
-import { JobFamByCapId } from '../../src/models';
+import { CapabilityFind } from "src/models/CapabilityById";
+import { JobFamByCapId } from 'src/models/JobFamByCapId';
 import { DataService } from '../data.service';
+import { Capabilities } from 'protractor';
 
 
 @Component({
@@ -12,8 +12,9 @@ import { DataService } from '../data.service';
 })
 export class NavbarcapComponent implements OnInit {
   public data: DataService;
-  public Capability: CapabilityById[];
+  public Capability: CapabilityFind[];
   public JobFamily: JobFamByCapId[];
+  public name: string[];
   constructor(data:DataService) { 
   this.data = data;
   }
@@ -21,7 +22,13 @@ export class NavbarcapComponent implements OnInit {
   ngOnInit(): void {
     let checker:Boolean = true;
     let counter:number = 0;
-    this.data.getCapability;
+    let total:number = CapabilityFind.length
+
+    this.data.getCapability().subscribe((n => {
+      this.Capability = n;
+      console.log("checker two " + n)
+      }));
+     
   }
 
   }
