@@ -5,8 +5,11 @@ import { Competency } from '../models/competency';
 import { Responsibility } from '../models/responsibility';
 import { TrainingPerBand } from '../models/trainingPerBand';
 import { BandRole } from '../models/bandRole';
-import { Observable } from 'rxjs';
 import { Band } from '../models/band';
+
+import { Observable } from 'rxjs';
+import { UserInfo } from 'src/models/userInfo';
+import { Hierarchy } from 'src/models/hierarchy';
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +45,13 @@ export class DataService {
   public postsecureGenerateUser(username, password, roleID, fullname): Promise<any>{
     //is promise[any] as it could possibly include error handling information
     return this.http.post('api/secureGenerateUser', {username, password, roleID, fullname}).toPromise()
+  }
+
+  public getUserInfo(): Observable<UserInfo[]> {
+    return this.http.get<UserInfo[]>('api/getUserInfo');
+  }
+
+  public getHierarchy(bandID): Observable<Hierarchy[]> {
+    return this.http.get<Hierarchy[]>('api/hierarchy/' + bandID);
   }
 }

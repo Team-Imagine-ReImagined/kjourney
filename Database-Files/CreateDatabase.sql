@@ -91,6 +91,7 @@ CREATE TABLE userData (
     ID INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     roleID INT NOT NULL,
+    photo VARCHAR(200) NOT NULL DEFAULT '../../assets/userImages/james.JPG',
     FOREIGN KEY (roleID) REFERENCES jobRole(ID)
 );
 

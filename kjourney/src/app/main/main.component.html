@@ -1,35 +1,106 @@
 <router-outlet></router-outlet>
-<header>
-  <table style="width: 100%;">
-    <tr>
-      <th>
-</th>
-<th>
-</th>
-</tr>
-</table>
-</header>
+<head>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
 
-<div class="topnav">
-  <a href="#">Your Role</a>
-  <a href="#">Support</a>
-</div>
+<div class="container">
+	<div class="left">
+		<h2>Your Current Profile:</h2>
+		<div class="data">
+			<div class="whole">
+				<div class="miniLeft">
+					<h2>Name:<li *ngFor="let userInfo of userInfo">{{ userInfo.userName }}</li>
+					</h2>
+				</div>
+				<div class="miniRight">
+					<tr *ngFor="let userInfo of userInfo">
+						<img src="{{ userInfo.userPhoto }}">
+					</tr>
+				</div>
+			</div>
+		</div>
+		<div class="empty"></div>
 
-<section>
-  <article>
-    <table id="careerTable" style="width:100%">
-		<thead>
-			<tr>
-				<th>Names</th>
-				<th>Summary</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr class="myRow" id="pop-over" *ngFor="let role of roles">
-				<td>{{ role.name }}</td>
-				<td>{{ role.summary }}</td>
-			</tr>
-		</tbody>
-	</table>
-  </article>
-</section>
+		<div class="data">
+			<div class="whole">
+				<div class="miniLeft">
+					<h2>Job Role:<li *ngFor="let userInfo of userInfo">{{ userInfo.jobRole }}</li>
+					</h2>
+				</div>
+				<div class="miniRight">
+					<h2>
+						<i id="click" class="material-icons" style="font-size: 30px; float:center;">info</i>
+					</h2>
+				</div>
+			</div>
+		</div>
+		<div class="empty"></div>
+
+		<div class="data">
+			<div class="whole">
+				<div class="miniLeft">
+					<h2>Capability:<li *ngFor="let userInfo of userInfo">{{ userInfo.capability }}</h2>
+					</div>
+					<div class="miniRight">
+						<h2>
+							<i id="click" class="material-icons" style="font-size: 30px; float:center;">info</i>
+						</h2>
+					</div>
+				</div>
+			</div>
+			<div class="empty"></div>
+
+			<div class="data">
+				<h2>Job Family:<li *ngFor="let userInfo of userInfo">{{ userInfo.jobFamily }}</li>
+				</h2>
+			</div>
+			<div class="empty"></div>
+
+			<div class="data">
+				<div class="whole">
+					<div class="miniLeft">
+						<h2>Band:<li *ngFor="let userInfo of userInfo">{{ userInfo.band }}</li>
+						</h2>
+					</div>
+					<div class="miniRight">
+						<h2>
+							<i id="click" class="material-icons" style="font-size: 30px;">info</i>
+						</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="right">
+			<div class="box">
+				<a routerLink="/tree">View Roles, Job Families and Capabilities Above Your Current Role</a>
+			</div>
+		</div>
+
+	</div>
+
+	<br><br><br><br>
+	<!--<section>
+		<article>
+			<table id="userInfo" style="width:100%">
+				<thead>
+					<tr>
+						<th>Band</th>
+						<th>Job Role</th>
+						<th>Job Family</th>
+						<th>Capability</th>
+						<th>Lead Name</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="myRow" id="pop-over" *ngFor="let hierarchy of hierarchy">
+						<td>{{ hierarchy.band }}</td>
+						<td>{{ hierarchy.jobRole }}</td>
+						<td>{{ hierarchy.jobFamily}}</td>
+						<td>{{ hierarchy.capability}}</td>
+						<td>{{ hierarchy.leadName}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+	</section>-->
