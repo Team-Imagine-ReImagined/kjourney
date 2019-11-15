@@ -11,7 +11,8 @@ var options = { cookies: true }
 var jwtGen = require('jsonwebtoken', options);
 var jwt = require('express-jwt');
 
-app.use(jwt({ secret: process.env.JWT_Secret}).unless({path: ['/login', '/SecureGenerateUser']}));
+app.use(jwt({ secret: process.env.JWT_Secret}).unless({path: ['/login', '/secureGenerateUser', 
+    '/capabilities', '/jobFamilies', '/jobRoles', '/training']}));
 
 app.use(express.json())
 
@@ -22,18 +23,27 @@ app.listen(8002, function () {
 });
 
 app.get('/training', function (req, res) {
+    if(!req.query.bandID){
+        res.status(400).json({Error:"bandID not specified"});
+    }
     db.getTrainingPerBand(req.query.bandID, function(rows) {
         res.send(rows);
     })
 });
 
 app.get('/competencies', function(req, res) {
+    if(!req.query.bandID){
+        res.status(400).json({Error:"bandID not specified"});
+    }
     db.getCompetencies(req.query.bandID, function(rows) {
         res.send(rows);
     })
 });
 
 app.get('/responsibilities', function(req, res) {
+    if(!req.query.bandID){
+        res.status(400).json({Error:"bandID not specified"});
+    }
     db.getResponsibilities(req.query.bandID, function(rows) {
         res.send(rows);
     })
@@ -137,29 +147,88 @@ app.post('/login', function (req,res) {
     }
 });
 
-app.post('/SecureGenerateUser', function(req,res){
+app.post('/secureGenerateUser', function(req,res){
     data = req.body;
+    username = data.username;
+    password = data.password;
+    fullname = data.fullname;
+    roleID = data.roleID;
+
+    if(data && username && password && fullname && roleID){
+
+    db.GetRoleByRoleID(roleID,function(roleRows){
+
 
     db.getUser(data.username, function(retRows){
-        if(retRows.length){
+        
+        if(retRows.length || !roleRows.length){
+            if(retRows.length){
             retRow = retRows[0];
-            res.send({ErrorMessage: "User "+data.username+" already exists"})
+            res.send({Status: 401, Message: "User "+data.username+" already exists"})
+            } else {
+            res.send({Status: 401, Message: "Role is not valid"})
+            }
 
         } else{
+
         bcrypt.genSalt(saltRounds, function(err, salt) {
         bcrypt.hash(data.password, salt, function(err, hash) {
             // Store hash in your password DB.
-            db.secureGenerateUser({"username":data.username, "passwordHash":hash, "lockedOut":false});
+            //generate entry in userData table
+            if(err){
+                res.send({Message:err});
+                return null;
+            }else{
+            db.dataGenerateUser({"name":fullname, "roleID":roleID},function(retID, ierr){
+                    if(ierr){
+                        res.send({Message: ierr});
+                        return null;
+                    } else{
+                        signInNewlyRegisteredUser(retID, data, hash, res)
+                    }
+                });
+            }
         });
+
         if(err){
-            res.send({ErrorMessage: err})
+            res.send({Status: 503, Message: err})
                 } else{
-                    res.send({SuccessMessage: "Worked for user "+data.username})
                 }
             });
         }
     })
 });
+} else{
+    res.send({Status:503, Message:"Form invalid"});
+}
+});
+
+function signInNewlyRegisteredUser(retID, data, hash, res){
+    db.secureGenerateUser({"IDFromUserDataTable":retID, "username":data.username, "passwordHash":hash, "lockedOut":false}, 
+                        function(i2err){
+                            if(i2err){
+                                res.send({Message: i2err});
+                                return null;
+                            }
+                        }, function(){
+                                db.getUser(data.username, function(retRowsList){
+                                    //get the user we just created
+                                
+                                    tokenValidDurationSeconds = 1800;
+                                    retRows = retRowsList[0];
+                                    //generate their access token for immediate access
+                                    var  accessToken  =  jwtGen.sign({ id:  retRows.id, isAdmin: retRows.isAdmin, date : Date.now() }, secretKey, {
+                                        expiresIn:  tokenValidDurationSeconds});
+                                    db.storeUserToken(retRows.id, accessToken, (Date.now() + (tokenValidDurationSeconds * 1000)));
+                                    //return 
+                                    res.send({Status:200, User:{
+                                        "username": retRows.username,
+                                        "id": retRows.id}, Auth: accessToken})
+                                    })
+                            }
+                        );
+                }
+
 
 
 app.get('/InvalidateUserToken', function(req, res){
@@ -174,7 +243,54 @@ app.get('/IsUserValid', function(req,res){
     //blank endpoint for uservalidation
     //jwt will auto return 401 if invalid 
     //or if we reach here, we send 200 
-    res.status(200).send({Status:200})
+    res.status(200).send({Status:200});
+})
+
+app.get('/capabilities', function(req,res){
+    db.GetCapabilitiesRegisterUser(function(rows){
+        res.send({Data: rows});
+    });
+})
+
+app.get('/jobFamilies', function(req,res){
+    var capID = req.query.capID;
+    db.GetJobFamiliesPerCapRegisterUser(capID, function(rows){
+        res.send({Data: rows});
+    });
+})
+
+app.get('/jobRoles', function(req,res){
+    console.log("In roles");
+    console.log(req.query.jobFamID);
+    var jobFamID = req.query.jobFamID
+    db.GetJobRolesPerJobFamRegisterUser(jobFamID, function(rows){
+        console.log(rows);
+        res.send({Data: rows});
+    });
+})
+
+app.get('/roles', function(req, res) {
+    if (req.query.bandID > 0){ // If a bandID has been supplied, get all roles for that band
+        db.getBandRoles(req.query.bandID, function(rows) {
+            res.send(rows);
+        })
+    } else { // Otherwise, get all roles
+        db.getRoles(function (rows) {
+            res.send(rows)
+        })
+    }
+});
+
+app.get('/roles', function(req, res) {
+    if (req.query.bandID > 0){ // If a bandID has been supplied, get all roles for that band
+        db.getBandRoles(req.query.bandID, function(rows) {
+            res.send(rows);
+        })
+    } else { // Otherwise, get all roles
+        db.getRoles(function (rows) {
+            res.send(rows)
+        })
+    }
 });
 
 app.get('/roles', function(req, res) {

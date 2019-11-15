@@ -97,8 +97,8 @@ exports.getResponsibilities = function(bandID, callback) {
 
 exports.getUser = function(Username, callback){
     db.query(
-        "SELECT id, username, passwordHash, failedAttempts, lockedOut, lockoutDate, jwt, jwtDate, isAdmin " +
-        "FROM authData WHERE username = '"+Username+"' LIMIT 1;",
+        `SELECT IDFromUserDataTable AS id, username, passwordHash, failedAttempts, lockedOut, lockoutDate, jwt, jwtDate, isAdmin 
+         FROM authData WHERE username = '${Username}' LIMIT 1;`,
         function (err, rows) {
             if (err) {
                 logger.error("getUser failed with error: " + err)
@@ -109,22 +109,36 @@ exports.getUser = function(Username, callback){
     })
 };
 
-exports.secureGenerateUser = function(data){
+exports.secureGenerateUser = function(data, errorCallback, successCallback){
     db.query('INSERT INTO authData SET ?', data,
     function(error, results, fields){
         if(error)
         {
             logger.error(error);
-            throw error;
+            errorCallback(error);
         }
         logger.debug("Generating user "+ data.username)
+        successCallback();
+    });
+};
+
+exports.dataGenerateUser = function(data, callback){
+    db.query('INSERT INTO userData SET ?', data,
+    function(error, results, fields){
+        if(error)
+        {
+            logger.error(error);
+            callback(null, error)
+        }
+        logger.debug("Generating user "+ data.name)
+        callback(results.insertId);
     });
 };
 
 
 exports.setUserLockoutCount = function (userId, setCount){
-    logger.debug("Setting lockout count for user "+ data.username + " at "+setCount)
-    db.query('UPDATE authData set failedAttempts = '+setCount+' where ID = '+userId+';',
+    logger.debug(`Setting lockout count for user ${data.username} at ${setCount}`);
+    db.query('UPDATE authData set failedAttempts = '+setCount+' where IDFromUserDataTable = '+userId+';',
     function(error){
         if(error){
             logger.error(error);
@@ -135,7 +149,7 @@ exports.setUserLockoutCount = function (userId, setCount){
 
 exports.setUserLockedout = function(userID, lockoutdate){
     logger.debug("Locking out user "+ data.username)
-    db.query('UPDATE authData set lockedOut = 1, lockoutDate = '+lockoutdate+' where ID = '+userID+';',
+    db.query('UPDATE authData set lockedOut = 1, lockoutDate = '+lockoutdate+' where IDFromUserDataTable = '+userID+';',
     function(error){
         if(error){
             logger.error(error);
@@ -146,7 +160,7 @@ exports.setUserLockedout = function(userID, lockoutdate){
 
 exports.resetLockout = function(userID){
     logger.debug("Resetting lockout for user "+ data.username)
-    db.query('UPDATE authData set lockedOut = 0, lockoutDate = null where ID = '+userID+';',
+    db.query('UPDATE authData set lockedOut = 0, lockoutDate = null where IDFromUserDataTable = '+userID+';',
     function(error){
         if(error){
             logger.error(error);
@@ -157,7 +171,7 @@ exports.resetLockout = function(userID){
 
 exports.storeUserToken = function(UserID, tokenValue, tokenDate){
     logger.debug("Storing token for user "+ data.username)
-    db.query('UPDATE authData set jwt = "'+ tokenValue + '", jwtDate = "'+tokenDate+ '" where ID = '+UserID+';',
+    db.query(`UPDATE authData set jwt = '${tokenValue}', jwtDate = '${tokenDate}' where IDFromUserDataTable = '${UserID}';`,
     function(error){
         if(error){
             logger.error(error);
@@ -168,7 +182,7 @@ exports.storeUserToken = function(UserID, tokenValue, tokenDate){
 
 exports.getUserToken = function(UserID){
     logger.debug("Getting token for user "+ data.username)
-    db.query('Select jwt, jwtDate from authData where ID = '+UserID+' LIMIT 1 ;',
+    db.query('Select jwt, jwtDate from authData where IDFromUserDataTable = '+UserID+' LIMIT 1 ;',
     function(error, rows){
         if(error){
             logger.error(error);
@@ -189,21 +203,55 @@ exports.clearUserToken = function(tokenToClear){
     });
 };
 
-exports.getBandRoles = function(bandID, callback) {
+exports.GetCapabilitiesRegisterUser = function(callback){
+    logger.debug("Getting capabilities for Register User");
+    db.query('SELECT ID as value, name as viewValue from capability',
+    function(error, rows){
+        if(error){
+            logger.error(error);
+            throw error;
+        }
+        callback(rows);
+    })
+}
+
+exports.GetJobFamiliesPerCapRegisterUser = function(capID, callback){
+    logger.debug("Getting Job families for Register User");
+    db.query(`SELECT ID as value, name as viewValue from jobFam where capID = ${capID};`,
+    function(error, rows){
+        if(error){
+            logger.error(error);
+            throw error;
+        }
+        callback(rows);
+    })
+}
+
+exports.GetJobRolesPerJobFamRegisterUser = function(jobFamID, callback){
+    logger.debug("Getting Job families for Register User");
+    db.query(`SELECT ID as value, name as viewValue from jobRole where jobFamID = ${jobFamID}`,
+    function(error, rows){
+        if(error){
+            logger.error(error);
+            throw error;
+        }
+        callback(rows);
+    })
+}
+
+
+exports.GetRoleByRoleID = function(jobRoleID, callback){
     db.query(
-        "SELECT jobRole.bandID, jobRole.ID as roleID, jobRole.name as roleName, jobFam.name as jobFamilyName " +
-        "FROM jobRole JOIN jobFam ON jobRole.jobFamID = jobFam.ID " +
-        "WHERE bandID = " + bandID,
+        `SELECT ID FROM jobRole WHERE ID = ${jobRoleID} LIMIT 1;`,
         function (err, rows) {
             if (err) {
-                logger.error("getBandRoles failed with error: " + err);
+                logger.error("Get Role ID for register failed with error: " + err);
                 throw err;
             }
-            logger.debug("getBandRoles succeeded.");
+            logger.debug(rows);
             callback(rows);
-        }
-    )
-}
+    })
+};
 
 exports.getBandName = function(bandID, callback) {
     db.query(

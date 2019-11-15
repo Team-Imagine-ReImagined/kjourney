@@ -4,6 +4,15 @@ import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import { BandsComponent } from './bands/bands.component';
 import { AuthGuard } from './_helpers/auth.guard';
+import { RegisterUserComponent } from './register-user/register-user.component';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
+
+
+
 
 
 
@@ -20,6 +29,9 @@ const routes: Routes = [
   },
   {
     path: 'bands', component: BandsComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'registerUser', component: RegisterUserComponent
   },
 
   {

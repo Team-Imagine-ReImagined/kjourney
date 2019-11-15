@@ -38,19 +38,6 @@ CREATE TABLE capLead (
     message VARCHAR(100) NOT NULL
 ); 
 
-DROP TABLE IF EXISTS authData;
-CREATE TABLE authData (
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    passwordHash VARCHAR(60) NOT NULL,
-    failedAttempts INT NOT NULL DEFAULT 0,
-    lockedOut BOOL NOT NULL DEFAULT FALSE,
-    lockoutDate VARCHAR(30) DEFAULT NULL,
-    jwt VARCHAR(200),
-    jwtDate VARCHAR(30) DEFAULT NULL,
-    isAdmin BOOLEAN NOT NULL DEFAULT 0
-);
-
 DROP TABLE IF EXISTS capability;
 CREATE TABLE capability (
     ID INT PRIMARY KEY AUTO_INCREMENT,
@@ -125,4 +112,21 @@ CREATE TABLE resp_Role (
 
     FOREIGN KEY (respID) REFERENCES responsibilities(ID),
     FOREIGN KEY (roleID) REFERENCES jobRole(ID)
+);
+
+
+DROP TABLE IF EXISTS authData;
+CREATE TABLE authData (
+    localID INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    passwordHash VARCHAR(60) NOT NULL,
+    failedAttempts INT NOT NULL DEFAULT 0,
+    lockedOut BOOL NOT NULL DEFAULT FALSE,
+    lockoutDate VARCHAR(30) DEFAULT NULL,
+    jwt VARCHAR(200),
+    jwtDate VARCHAR(30) DEFAULT NULL,
+    isAdmin BOOLEAN NOT NULL DEFAULT 0,
+    IDFromUserDataTable INT,
+
+    FOREIGN KEY (IDFromUserDataTable) REFERENCES userData(ID) 
 );
