@@ -98,7 +98,7 @@ values ('Executive', 0);
     values (4, 1, 'Matches long term business needs with the career development and job fulfilment of staff' );
     insert into comp_Band(compID, bandID, compDesc)
     values (5, 1, 'Develops the whole business through learning and development' );
-    
+
     insert into band_Training(bandID, trainingID) values (1, 1);
     insert into band_Training(bandID, trainingID) values (1, 3);
     insert into band_Training(bandID, trainingID) values (1, 4);
@@ -398,7 +398,7 @@ values ('Sales & Marketing', 1);
             insert into resp_Role(respID, roleID) values (3, 12);
             insert into resp_Role(respID, roleID) values (10, 12);
             insert into resp_Role(respID, roleID) values (16, 12);
-            
+
         insert into jobRole (name, summary, link, jobFamID, bandID)
         values ('Senior Sales Executive', "Recognised leader and developer of Kainos talent, continuously improves Kainos, comfortable in novel situations, owns multiple initiatives, accountable for delivery at Programme level.",
         'http://sharepoint.kainos.com/', 3, 3);
@@ -440,13 +440,13 @@ values ('Technical', 2);
     values ('Software Engineering', 2);
         insert into jobRole (name, summary, link, jobFamID, bandID)
         values ('Lead Software Engineer', "Expert in their field, is consulted by others, supervises others, works well even if under pressure, effectively coaches people.",
-        'http://sharepoint.kainos.com/', 4, 5); 
+        'http://sharepoint.kainos.com/', 4, 5);
             insert into resp_Role(respID, roleID) values (9, 18);
             insert into resp_Role(respID, roleID) values (10, 18);
             insert into resp_Role(respID, roleID) values (11, 18);
         insert into jobRole (name, summary, link, jobFamID, bandID)
         values ('Software Engineer', "Delivers with limited supervision, trusted to make tactical decisions.",
-        'http://sharepoint.kainos.com/', 4, 6);      
+        'http://sharepoint.kainos.com/', 4, 6);
             insert into resp_Role(respID, roleID) values (14, 19);
             insert into resp_Role(respID, roleID) values (3, 19);
             insert into resp_Role(respID, roleID) values (12, 19);

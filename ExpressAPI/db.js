@@ -238,16 +238,31 @@ exports.GetJobFamiliesPerCapRegisterUser = function(capID, callback){
     })
 }
 
+exports.getBandRoles = function(bandID, callback) {
+    db.query(
+        "SELECT jobRole.bandID, jobRole.ID as roleID, jobRole.name as roleName, jobFam.name as jobFamilyName " +
+        "FROM jobRole JOIN jobFam ON jobRole.jobFamID = jobFam.ID " +
+        "WHERE bandID = " + bandID,
+        function (err, rows) {
+            if (err) {
+                logger.error("getBandRoles failed with error: " + err);
+                throw err;
+            }
+            logger.debug("getBandRoles succeeded.");
+            callback(rows);
+    })
+};
+
 exports.GetJobRolesPerJobFamRegisterUser = function(jobFamID, callback){
     logger.debug("Getting Job families for Register User");
     db.query(`SELECT ID as value, name as viewValue from jobRole where jobFamID = ${jobFamID}`,
-    function(error, rows){
-        if(error){
-            logger.error(error);
-            throw error;
-        }
-        callback(rows);
-    })
+        function(error, rows){
+            if(error){
+                logger.error(error);
+                throw error;
+            }
+            callback(rows);
+        })
 }
 
 
@@ -261,12 +276,12 @@ exports.GetRoleByRoleID = function(jobRoleID, callback){
             }
             logger.debug(rows);
             callback(rows);
-    })
+        })
 };
 
 exports.getBandName = function(bandID, callback) {
     db.query(
-        "SELECT id, name, level " +
+        "SELECT id as bandID, name as bandName " +
         "FROM band " +
         "WHERE id = " + bandID,
         function (err, rows) {

@@ -115,7 +115,6 @@ CREATE TABLE resp_Role (
     FOREIGN KEY (roleID) REFERENCES jobRole(ID)
 );
 
-
 DROP TABLE IF EXISTS authData;
 CREATE TABLE authData (
     localID INT PRIMARY KEY AUTO_INCREMENT,
@@ -129,5 +128,5 @@ CREATE TABLE authData (
     isAdmin BOOLEAN NOT NULL DEFAULT 0,
     IDFromUserDataTable INT,
 
-    FOREIGN KEY (IDFromUserDataTable) REFERENCES userData(ID) 
+    FOREIGN KEY (IDFromUserDataTable) REFERENCES userData(ID)
 );
