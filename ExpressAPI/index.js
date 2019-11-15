@@ -20,6 +20,24 @@ app.use(express.json());
 
 const db = require('./db.js');
 
+app.get('/roles', function (req, res) {
+    db.getRoles(function (rows) {
+        res.send(rows)
+    })
+});
+
+app.get('/capabilities', function(req, res) {
+    db.getCapabilities(req.query.capabilityID, function(rows) {
+        res.send(rows)
+    })
+});
+
+app.get('/jobFamilies', function(req, res) {
+    db.getJobFamilies(function(rows) {
+        res.send(rows)
+    })
+});
+
 app.listen(8002, function () {
     console.log('Express started on port 8002')
 });

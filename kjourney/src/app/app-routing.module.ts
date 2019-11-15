@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import { BandsComponent } from './bands/bands.component';
+import { CapabilityComponent} from './capability/capability.component';
 import { AuthGuard } from './_helpers/auth.guard';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { Component, OnInit } from '@angular/core';
@@ -29,6 +30,9 @@ const routes: Routes = [
   },
   {
     path: 'registerUser', component: RegisterUserComponent
+  },
+  {
+    path: 'capability', component: CapabilityComponent, canActivate: [AuthGuard]
   },
   {
     path: '**', redirectTo: ''
